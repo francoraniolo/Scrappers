@@ -1,10 +1,22 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
-var input='pokemon sword';
+//var input='pokemon sword';
 
-var input = input.split(' ').join('-');
+//var input = input.split(' ').join('-');
 
+//console.log('El input es ',input );
+
+//var principiourl='https://listado.mercadolibre.com.ar/';
+
+//var url = principiourl.concat(input);
+
+
+
+// INICIO FUNCION 
+function findArticulos(input, callback){
+
+var input= input.split(' ').join('-');
 console.log('El input es ',input );
 
 var principiourl='https://listado.mercadolibre.com.ar/';
@@ -22,6 +34,7 @@ request(url, (error,
 
         var existe;
 
+        var $articulos= new Array();
 
         var $el, $titulo, $titulo_minus;
 
@@ -34,15 +47,38 @@ request(url, (error,
             arreglo.forEach(function(entrada) {
 
                 if (existe) existe = $titulo_minus.includes(entrada);
-
+                
             })
 
             if (existe) {
                 console.log('Titulo: ', $el.find('span.main-title').text());
 
+                $articulos.push($el.find('span.main-title').text());
+
                 console.log('Precio: ', $el.find('span.price__fraction').text());
             }
 
         })
+        callback(null, $articulos);
+    }else{
+        callback(error);
+        return;
     }
 });
+
+} //FIN DE FUNCION
+
+module.exports = {
+    findArticulos
+}
+
+/*
+findArticulos("pokemon sword", function(err,articls){
+    if(err) {
+        console.log(err);
+    }
+    else {
+        console.log(articls);
+    }
+})
+*/
