@@ -15,8 +15,8 @@ const cheerio = require('cheerio');
 
 // INICIO FUNCION 
 function findArticulos(input, callback){
-
-var input= input.split(' ').join('-');
+  
+input= input.split(' ').join('-');
 console.log('El input es ',input );
 
 var principiourl='https://listado.mercadolibre.com.ar/';
@@ -51,11 +51,11 @@ request(url, (error,
             })
 
             if (existe) {
-                console.log('Titulo: ', $el.find('span.main-title').text());
+              //  console.log('Titulo: ', $el.find('span.main-title').text());
 
                 $articulos.push($el.find('span.main-title').text());
 
-                console.log('Precio: ', $el.find('span.price__fraction').text());
+              //  console.log('Precio: ', $el.find('span.price__fraction').text());
             }
 
         })
