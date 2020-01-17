@@ -3,6 +3,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 var scrape = require('./scrape');
+var parser = require('./parser');
 
 scrape.findArticulos("mochila", function(err,articls){
     if(err) {
@@ -13,67 +14,42 @@ scrape.findArticulos("mochila", function(err,articls){
 
       
       articls.forEach(element => {
-           
-        var principiourl = 'https://articulo.mercadolibre.com.ar/MLA-0-';
-
-        var input = element.split(' - ').join('-');
-        input = input.split(' / ').join('-');
-        input = input.split(' | ').join('-');
-        input = input.split(' + ').join('-');
-        input = input.split(' * ').join('-');
-        input = input.split('!').join('');
-        input = input.split(', ').join('-');
-
-        input = input.split(' (').join('-');
-        input = input.split(') ').join('-');
-
-        input = input.split('$').join('');
-
         
-        input = input.replace(' +','-');
-
-        input = input.split('+').join('');
-        
-        input = input.replace(',','');
-        input = input.replace('.','');
-        input = input.replace('/','');
-        input = input.replace('´',''); 
-        input = input.replace('¨',''); 
-        input = input.replace("'",''); 
-       
-        //tildes
-        input = input.replace('á','a');
-        input = input.replace('é','e');
-        input = input.replace('í','i');
-        input = input.replace('ó','o');
-        input = input.replace('ú','u');
-
-        input = input.replace('ñ','n');
-
-        //input = input.split('/').join('-');
-        input= input.split(' ').join('-');
-        input= input.toLowerCase();
-        input= input.slice(1);
-
-        var finurl = '_JM?';
-
-        var url = principiourl.concat(input);
-        url= url.concat(finurl);
+        var url = parser.parseDireccionUrl(element);
 
         console.log("El url es ",url);
-
-      /*  request(url, (error,
+        
+        request(url, (error,
             response, html) => {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
 
+                const siteHeading = $('ul.questions__list');
 
+               
+                
+                siteHeading.find('li').each(function () {
+
+
+
+                  $el = $(this).find('article.questions__item--question');
+                  console.log("PREGUNTA");
+                  $pregunta=$el.find('p').text().toLowerCase();
+                  console.log($pregunta);
+                  console.log("RESPUESTA");
+                  $respuesta= $(this).find('article.questions__item--answer').find('p').text().toLowerCase();
+                  console.log($respuesta);
+                  console.log("FECHA Y HORA");
+                  $fecha = $(this).find('article.questions__item--answer').find('time').text();
+                  console.log($fecha);
+                }) 
 
             }else{
-                callback(error);
+                //callback(error);
+                //console.log("Pagina no existe");
                 return;
             }
-        }); */
+        }); 
           
       });
            
