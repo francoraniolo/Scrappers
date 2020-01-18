@@ -5,6 +5,8 @@ const cheerio = require('cheerio');
 var scrape = require('./scrape');
 var parser = require('./parser');
 
+function obtenerArticulos($term){
+
 scrape.findArticulos("mochila", function(err,articls){
     if(err) {
         console.log(err);
@@ -57,7 +59,11 @@ scrape.findArticulos("mochila", function(err,articls){
 }); 
     
 
+}
 
+module.exports = {
+  obtenerArticulos
+}
 
 
 
