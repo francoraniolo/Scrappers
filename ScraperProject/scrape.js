@@ -1,70 +1,66 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
-//var input='pokemon sword';
-
-//var input = input.split(' ').join('-');
-
-//console.log('El input es ',input );
-
-//var principiourl='https://listado.mercadolibre.com.ar/';
-
-//var url = principiourl.concat(input);
-
-
-
 // INICIO FUNCION 
-function findArticulos(input, callback){
-  
-input= input.split(' ').join('-');
-console.log('El input es ',input );
+function findArticulos(input, callback) {
 
-var principiourl='https://listado.mercadolibre.com.ar/';
+    console.log('El input es ', input);
 
-var url = principiourl.concat(input);
+    input = input.split(' ').join('-');
 
-request(url, (error,
-    response, html) => {
-    if (!error && response.statusCode == 200) {
-        const $ = cheerio.load(html);
+    input = input.toLowerCase();
 
-        const siteHeading = $('#searchResults');
+    var principiourl = 'https://listado.mercadolibre.com.ar/';
 
-        var arreglo = input.split('-');
+    var url = principiourl.concat(input);
 
-        var existe;
+    request(url, (error,
+        response, html) => {
+        if (!error && response.statusCode == 200) {
+            const $ = cheerio.load(html);
 
-        var $articulos= new Array();
+            const siteHeading = $('#searchResults');
 
-        var $el, $titulo, $titulo_minus;
+            var arreglo = input.split('-');
 
-        siteHeading.find('li').each(function () {
-            existe = true;
-            $el = $(this);
-            $titulo =
-                $titulo_minus = $el.find('span.main-title').text().toLowerCase();
+            var existe;
 
-            arreglo.forEach(function(entrada) {
+            var $articulos = new Array();
 
-                if (existe) existe = $titulo_minus.includes(entrada);
-                
-            })
+            var $el, $titulo, $titulo_minus;
 
-            if (existe) {
-              //  console.log('Titulo: ', $el.find('span.main-title').text());
+            var resultados = siteHeading.find('li.article');
+         //   var titulos = resultados.find('span.main-title');
 
-                $articulos.push($el.find('span.main-title').text());
+            let limite = 0;
 
-              //  console.log('Precio: ', $el.find('span.price__fraction').text());
+            for (let index = 0; index < resultados.length && limite<10; index++) {
+
+                existe = true;
+                $el = $(resultados[index]).find('span.main-title');
+                $titulo_minus = $el.text().toLowerCase();
+
+                arreglo.forEach(function (entrada) {
+
+                    if (existe) existe = $titulo_minus.includes(entrada);
+
+                })
+
+                if (existe) {
+                    
+                    $articulos.push($(resultados[index]).find('div.images-viewer').attr('item-url'));
+                    limite++;
+
+                }
+
             }
+            callback(null, $articulos);
+        } else {
+            callback(error);
+            return;
+        }
 
-        })
-        callback(null, $articulos);
-    }else{
-        callback(error);
-        return;
-    }
-});
+    });
 
 } //FIN DE FUNCION
 
@@ -72,13 +68,17 @@ module.exports = {
     findArticulos
 }
 
+
 /*
-findArticulos("pokemon sword", function(err,articls){
-    if(err) {
+
+
+findArticulos("Resident Evil 2", function (err, articls) {
+    if (err) {
         console.log(err);
     }
     else {
         console.log(articls);
     }
 })
+
 */

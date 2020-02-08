@@ -3,63 +3,49 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 var scrape = require('./scrape');
-var parser = require('./parser');
+var artcreator = require('./articleCreator');
 
-function obtenerArticulos($term){
 
-scrape.findArticulos("mochila", function(err,articls){
-    if(err) {
+
+async function obtenerArticulos($term) {
+
+  return new Promise((resolve, reject) => {
+    scrape.findArticulos($term, function (err, articls) {
+      if (err) {
         console.log(err);
-    }
-    else {
-      console.log(articls);
+        reject(err); return;
+      }
+      else {
 
-      
-      articls.forEach(element => {
-        
-        var url = parser.parseDireccionUrl(element);
+        (async () => {
 
-        console.log("El url es ",url);
-        
-        request(url, (error,
-            response, html) => {
-            if (!error && response.statusCode == 200) {
-                const $ = cheerio.load(html);
+          $articulos_atributos = new Array();
+          console.log("articls es :",articls);
+          for (element of articls) {
 
-                const siteHeading = $('ul.questions__list');
-
-               
-                
-                siteHeading.find('li').each(function () {
-
-
-
-                  $el = $(this).find('article.questions__item--question');
-                  console.log("PREGUNTA");
-                  $pregunta=$el.find('p').text().toLowerCase();
-                  console.log($pregunta);
-                  console.log("RESPUESTA");
-                  $respuesta= $(this).find('article.questions__item--answer').find('p').text().toLowerCase();
-                  console.log($respuesta);
-                  console.log("FECHA Y HORA");
-                  $fecha = $(this).find('article.questions__item--answer').find('time').text();
-                  console.log($fecha);
-                }) 
-
-            }else{
-                //callback(error);
-                //console.log("Pagina no existe");
-                return;
+            var objetoArticulo = await artcreator.createArticle(element);
+            if (objetoArticulo != null) {
+              $articulos_atributos.push(objetoArticulo);
             }
-        }); 
-          
-      });
-           
-    }
-}); 
-    
+
+
+          }
+          resolve($articulos_atributos);
+        })();
+      }
+    });
+  });
 
 }
+
+
+(async () => {
+
+  let articuloss = await obtenerArticulos("monopoly");
+  console.log(articuloss);
+
+})();
+
 
 module.exports = {
   obtenerArticulos
