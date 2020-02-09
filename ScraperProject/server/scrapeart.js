@@ -20,17 +20,19 @@ async function obtenerArticulos($term) {
         (async () => {
 
           $articulos_atributos = new Array();
-          console.log("articls es :",articls);
-          for (element of articls) {
 
-            var objetoArticulo = await artcreator.createArticle(element);
-            if (objetoArticulo != null) {
-              $articulos_atributos.push(objetoArticulo);
-            }
-
-
+          
+          
+          $promesas = new Array();
+          
+          for(element of articls){
+              $promesas.push(artcreator.createArticle(element));
           }
-          resolve($articulos_atributos);
+
+          Promise.all($promesas).then(values => {
+            resolve(values);
+          });
+
         })();
       }
     });
@@ -38,14 +40,15 @@ async function obtenerArticulos($term) {
 
 }
 
+/*
 
 (async () => {
 
-  let articuloss = await obtenerArticulos("monopoly");
+  let articuloss = await obtenerArticulos("Resident Evil 7 ps4");
   console.log(articuloss);
 
 })();
-
+*/
 
 module.exports = {
   obtenerArticulos

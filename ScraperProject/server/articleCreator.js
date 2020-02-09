@@ -9,6 +9,16 @@ async function createArticle(url) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
 
+                //Busco el titulo
+
+                var titulo = $('header.item-title').find('h1.item-title__primary').text();
+                titulo = titulo.split('\t').join('');
+                titulo = titulo.split('\n').join('');
+
+                //Busco la imagen 
+                
+                var imagenLink = $('a.gallery-trigger').attr('href');
+
                 //Busco los precios
                 var priceTags = $('#short-desc').find('span.price-tag-fraction');
 
@@ -31,7 +41,7 @@ async function createArticle(url) {
 
                 var preguntasRespuestas = siteHeading.find('li');
 
-                var $respuestaDefinitiva;
+                var $respuestaDefinitiva='';
 
                 var dosSemanas = new Date();
                 var aux = dosSemanas.getDate() - 14;
@@ -39,7 +49,9 @@ async function createArticle(url) {
 
                 $fechaTemprana = dosSemanas;
 
-                for (let index = 0; index < preguntasRespuestas.length && index < 10; index++) {
+                
+
+                for (let index = 0; index < preguntasRespuestas.length && index < 5; index++) {
 
                     if (!$stock) {
 
@@ -49,8 +61,8 @@ async function createArticle(url) {
                         $zonarespuesta = $(preguntasRespuestas[index]).find('article.questions__item--answer');
 
                         //Obtengo la fecha y hora en texto, y me quedo con la fecha en string
-
-                        $fecha = $zonarespuesta.find('time').text();
+                        $elementoTime =  $zonarespuesta.find('time');
+                        $fecha = $elementoTime.text();
                         $fecha = $fecha.substring(0, ($fecha.indexOf(':') - 3));
                         $fecha = $fecha.split('/').join('-');
                         $fecha = $fecha.split(' ').join('');
@@ -79,12 +91,13 @@ async function createArticle(url) {
                                     //Si la pregunta de stock es más reciente que la que tenía la reemplazo
                                     if ((fechaArticulo.getTime() - $fechaTemprana.getTime()) > 0) {
                                         $fechaTemprana = fechaArticulo;
+                                        $respuestaDefinitiva = $respuesta;
                                     }
 
 
-                                    $respuestaDefinitiva = $respuesta;
+                                   
 
-                                    $fecha = $zonarespuesta.find('time').text().substring(0, 10);
+                                    $fecha = $elementoTime.text().substring(0, 10);
 
 
                                 } else {
@@ -93,11 +106,12 @@ async function createArticle(url) {
                                         //Si la pregunta de stock es más reciente que la que tenía la reemplazo
                                         if ((fechaArticulo.getTime() - $fechaTemprana.getTime()) > 0) {
                                             $fechaTemprana = fechaArticulo;
+                                            $respuestaDefinitiva = $respuesta;
                                         }
 
-                                        $respuestaDefinitiva = $respuesta;
+                                        
 
-                                        $fecha = $zonarespuesta.find('time').text().substring(0, 10);
+                                        $fecha = $elementoTime.text().substring(0, 10);
                                     } else {
 
                                         //Probablemente no hay stock, ver que hacer. 
@@ -110,7 +124,13 @@ async function createArticle(url) {
                     }
                 }
 
-                resolve({ 'precio': precio, 'stock': $stock, 'fecha': $fecha, 'respuesta': $respuestaDefinitiva, 'url': url });
+                resolve({'titulo':titulo, 
+                         'precio': precio, 
+                         'stock': $stock, 
+                         'fecha': $fecha, 
+                         'respuesta': $respuestaDefinitiva, 
+                         'url': url, 
+                         'imagen': imagenLink});
             } else {
                 resolve(null);
                 return;

@@ -3,6 +3,8 @@ const router = express.Router();
 
 const articulo = require('../controllers/articulo.controller');
 
-router.get('/:nombre', articulo.getArticulos );
+router.get('/:termino', articulo.getArticulos );
+
+
 
 module.exports = router;

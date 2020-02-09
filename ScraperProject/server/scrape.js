@@ -30,7 +30,6 @@ function findArticulos(input, callback) {
             var $el, $titulo, $titulo_minus;
 
             var resultados = siteHeading.find('li.article');
-         //   var titulos = resultados.find('span.main-title');
 
             let limite = 0;
 
@@ -67,18 +66,3 @@ function findArticulos(input, callback) {
 module.exports = {
     findArticulos
 }
-
-
-/*
-
-
-findArticulos("Resident Evil 2", function (err, articls) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log(articls);
-    }
-})
-
-*/
