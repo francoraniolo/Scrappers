@@ -4,17 +4,17 @@ import { ArticulosService } from "../../services/articulos.service";
 import {Articulo} from '../../models/articulo';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
   providers: [ArticulosService]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
-  articulos: Articulo[];
+  articulos: Object ;
   
-
   readonly URL_API = 'http://localhost:3000/api/articulos';
 
   constructor(private articulosservice : ArticulosService ) { }
@@ -23,10 +23,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getArticulos(form: NgForm){
-    console.log(form);
-    var articulosCreo = this.articulosservice.getArticulos(form.name.toString());
-    console.log(articulosCreo);
+  async getArticulos(form: NgForm){
+    
+   this.articulos = await this.articulosservice.getArticulos(form.name.toString());
+   console.log(this.articulos); 
+
   }
 
 }

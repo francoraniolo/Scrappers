@@ -8,23 +8,15 @@ import {Articulo} from '../models/articulo';
 })
 export class ArticulosService {
   termino: string; 
-  articulos: Articulo[];
+  articulos: Object;
   readonly URL_API = 'http://localhost:3000/api/articulos';
 
   constructor(private http: HttpClient) { }
 
-  getArticulos(termino: string) {
-    let promise = new Promise((resolve,reject)=>{
-      this.http.get(this.URL_API+`/${termino}`)
-      .toPromise()
-      .then(
-        res=> {
-          console.log(res);
-        }
-      )
-    });
+   async getArticulos(termino: string) {
 
-    return promise;
-     
+      this.articulos = await this.http.get(this.URL_API+`/${termino}`).toPromise();
+      return this.articulos;
+  
   }
 }

@@ -1,17 +1,26 @@
-<app-navbar>
-
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>       
-        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
+<div class="container">
+    <div class="row" *ngFor="let articulo of articulos; index as i;">
+        
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 columna">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"
+                        style="background-image: url('https://pbs.twimg.com/profile_images/3596669314/95250957ca13505b8668022fcc830da5.jpeg'); background-size: cover;">
+                    </div>
+                    <mat-card-title> {{articulo.titulo}} </mat-card-title>
+                    <mat-card-subtitle> Mercadolibre</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image class="img_articulo" [src]="articulo.imagen"
+                    alt="Imagen de articulo">
+                <mat-card-content>
+                    <h2>
+                        {{articulo.precio}}
+                    </h2>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button style="font-size : 20px;">Ver Articulo</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
     </div>
-
-</app-navbar>
-
-
+</div>

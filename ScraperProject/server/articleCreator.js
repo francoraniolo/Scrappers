@@ -8,18 +8,36 @@ async function createArticle(url) {
             response, html) => {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
+                var estiloViejo = false;
+
+                 //Busco la imagen 
+                
+                 var imagenLink = $('a.gallery-trigger').attr('href');
+                 if(imagenLink==null) {
+                     estiloViejo=true;
+                     imagenLink=$('img.ui-pdp-gallery__figure__image').attr('data-zoom');
+                    }
 
                 //Busco el titulo
 
-                var titulo = $('header.item-title').find('h1.item-title__primary').text();
+                if(estiloViejo){
+                   var titulo = $('h1.ui-pdp-title').text();
+                }else{
+                    var titulo = $('header.item-title').find('h1.item-title__primary').text();   
+                }
+                
                 titulo = titulo.split('\t').join('');
                 titulo = titulo.split('\n').join('');
 
-                //Busco la imagen 
-                
-                var imagenLink = $('a.gallery-trigger').attr('href');
+               
 
                 //Busco los precios
+                if(estiloViejo){
+
+                }else{
+
+                
+
                 var priceTags = $('#short-desc').find('span.price-tag-fraction');
 
                 var precio;
@@ -31,6 +49,8 @@ async function createArticle(url) {
                 } else {
                     precio = '$ '.concat($(priceTags[0]).text());
                 }
+
+               }
 
                 const siteHeading = $('ul.questions__list');
 
