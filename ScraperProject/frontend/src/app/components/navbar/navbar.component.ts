@@ -26,7 +26,8 @@ export class NavbarComponent {
   async getArticulos(form: NgForm){
     
    this.articulos = await this.articulosservice.getArticulos(form.name.toString());
-   console.log(this.articulos); 
+   console.log(form.name.toString())
+   
 
   }
 

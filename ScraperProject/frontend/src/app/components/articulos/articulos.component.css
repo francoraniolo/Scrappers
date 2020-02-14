@@ -4,7 +4,7 @@
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    
+    max-width: 50vw;
 }
  
 .example-card:hover {
@@ -14,11 +14,16 @@
 .columna {
     padding-top: 5vh;
     padding-bottom: 5vh;
+    
 }
 
 .img_articulo {
-    max-width: 350px;
+    
     max-height: 350px;
+    max-width: 100%;
     margin-left: 0vh;
+    margin-right: 0vh;
+
 }
+
 

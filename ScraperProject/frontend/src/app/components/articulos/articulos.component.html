@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row" *ngFor="let articulo of articulos; index as i;">
-        
+
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 columna">
             <mat-card class="example-card">
                 <mat-card-header>
@@ -8,17 +8,28 @@
                         style="background-image: url('https://pbs.twimg.com/profile_images/3596669314/95250957ca13505b8668022fcc830da5.jpeg'); background-size: cover;">
                     </div>
                     <mat-card-title> {{articulo.titulo}} </mat-card-title>
-                    <mat-card-subtitle> Mercadolibre</mat-card-subtitle>
+                    <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image class="img_articulo" [src]="articulo.imagen"
-                    alt="Imagen de articulo">
-                <mat-card-content>
-                    <h2>
-                        {{articulo.precio}}
-                    </h2>
-                </mat-card-content>
+                <div class="contenedorImagen" style="padding-top: 3vh;">
+                    <a [href]=articulo.url>
+
+
+                        <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
+                    </a>
+                </div>
+
+
                 <mat-card-actions>
-                    <button mat-button style="font-size : 20px;">Ver Articulo</button>
+                    <div class="clearfix" style="overflow: hidden; ">
+
+                        <h1 style="padding-left: 7vh; float:left;">
+                            {{articulo.precio}}
+                        </h1>
+                        <div style="max-width: max-content; max-height: max-content; float:right" align="end">
+                            <button mat-button style="font-size: 20px;">Boton de momento</button>
+                        </div>
+                    </div>
+                    
                 </mat-card-actions>
             </mat-card>
         </div>
