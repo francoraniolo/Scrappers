@@ -53,7 +53,14 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <p *ngFor="let content of fillerContent"> {{content}} </p>
+
+            <app-articulos [articulos]="articulos"></app-articulos>
+
+
+
+
+
+
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

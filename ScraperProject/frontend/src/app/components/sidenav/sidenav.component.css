@@ -33,3 +33,13 @@ h1.example-app-name {
 .w-120 {
     width: 40vw;
 }
+
+.mat-sidenav {
+    width: 30%;
+}
+
+@media screen and (max-width: 767px) {
+    .mat-sidenav {
+        width: 40%;
+    }
+}
