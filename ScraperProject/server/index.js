@@ -14,15 +14,12 @@ app.use(cors());
 //REQUESTS PERMITIDOS DESDE
 app.use(cors({
     origin: 'http://localhost:4200'
-  }));
+}));
 
 //Routes
-app.use('/api/articulos',require('./routes/articulos.routes'));
+app.use('/api/articulos', require('./routes/articulos.routes'));
 
 //Starting the server
-app.listen(app.get('port'), ()=> {
+app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
 });
-
-
-

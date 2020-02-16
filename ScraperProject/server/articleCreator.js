@@ -34,7 +34,7 @@ async function createArticle(url) {
                 //Busco los precios
                 if (estiloViejo) {
                     var spans = $('span.price-tag-fraction');
-                    var precio = '$ '.concat($(spans[0]).text());
+                    var precio = 'ARS $ '.concat($(spans[0]).text());
 
                 } else {
 
@@ -52,77 +52,62 @@ async function createArticle(url) {
                     }
 
                 }
-                
+
                 var $stock = false;
                 var $fecha, $fechaTemprana;
                 var $respuestaDefinitiva = '';
-                
-               if(!estiloViejo){ 
 
-                const siteHeading = $('ul.questions__list');
+                if (!estiloViejo) {
 
-                let limite = 0;
+                    const siteHeading = $('ul.questions__list');
 
-                var preguntasRespuestas = siteHeading.find('li');
+                    let limite = 0;
 
-                var dosSemanas = new Date();
-                var aux = dosSemanas.getDate() - 14;
-                dosSemanas.setDate(aux);
+                    var preguntasRespuestas = siteHeading.find('li');
 
-                $fechaTemprana = dosSemanas;
+                    var dosSemanas = new Date();
+                    var aux = dosSemanas.getDate() - 14;
+                    dosSemanas.setDate(aux);
 
-                for (let index = 0; index < preguntasRespuestas.length && index < 5; index++) {
+                    $fechaTemprana = dosSemanas;
 
-                    if (!$stock) {
+                    for (let index = 0; index < preguntasRespuestas.length && index < 5; index++) {
 
-                        $el = $(preguntasRespuestas[index]).find('article.questions__item--question');
+                        if (!$stock) {
 
-                        $pregunta = $el.find('p').text().toLowerCase();
-                        $zonarespuesta = $(preguntasRespuestas[index]).find('article.questions__item--answer');
+                            $el = $(preguntasRespuestas[index]).find('article.questions__item--question');
 
-                        //Obtengo la fecha y hora en texto, y me quedo con la fecha en string
-                        $elementoTime = $zonarespuesta.find('time');
-                        $fecha = $elementoTime.text();
-                        $fecha = $fecha.substring(0, ($fecha.indexOf(':') - 3));
-                        $fecha = $fecha.split('/').join('-');
-                        $fecha = $fecha.split(' ').join('');
+                            $pregunta = $el.find('p').text().toLowerCase();
+                            $zonarespuesta = $(preguntasRespuestas[index]).find('article.questions__item--answer');
 
-                        $fechaArreglo = $fecha.split('-');
+                            //Obtengo la fecha y hora en texto, y me quedo con la fecha en string
+                            $elementoTime = $zonarespuesta.find('time');
+                            $fecha = $elementoTime.text();
+                            $fecha = $fecha.substring(0, ($fecha.indexOf(':') - 3));
+                            $fecha = $fecha.split('/').join('-');
+                            $fecha = $fecha.split(' ').join('');
 
-                        //Genero la fecha
+                            $fechaArreglo = $fecha.split('-');
 
-                        fechaArticulo = new Date($fechaArreglo[2], $fechaArreglo[1] - 1, $fechaArreglo[0]);
+                            //Genero la fecha
 
-                        //Si es de hace menos de 2 semanas, analizo
+                            fechaArticulo = new Date($fechaArreglo[2], $fechaArreglo[1] - 1, $fechaArreglo[0]);
 
-                        diferencia = (fechaArticulo.getTime() - dosSemanas.getTime());
+                            //Si es de hace menos de 2 semanas, analizo
 
-                        if (diferencia > 0) {
+                            diferencia = (fechaArticulo.getTime() - dosSemanas.getTime());
 
-
-                            if ($pregunta.includes('stock')) {
-
-                                $respuesta = $zonarespuesta.find('p').text().toLowerCase();
-
-                                if ($respuesta.includes('si ') || $respuesta.includes('sí ')
-                                    || $respuesta.includes('si,') || $respuesta.includes('sí,')) {
-                                    $stock = true;
-
-                                    //Si la pregunta de stock es más reciente que la que tenía la reemplazo
-                                    if ((fechaArticulo.getTime() - $fechaTemprana.getTime()) > 0) {
-                                        $fechaTemprana = fechaArticulo;
-                                        $respuestaDefinitiva = $respuesta;
-                                    }
+                            if (diferencia > 0) {
 
 
+                                if ($pregunta.includes('stock')) {
 
+                                    $respuesta = $zonarespuesta.find('p').text().toLowerCase();
 
-                                    $fecha = $elementoTime.text().substring(0, 10);
-
-
-                                } else {
-                                    if (($respuesta.includes('tenemos')) && (!$respuesta.includes(' no'))) {
+                                    if ($respuesta.includes('si ') || $respuesta.includes('sí ') ||
+                                        $respuesta.includes('si,') || $respuesta.includes('sí,')) {
                                         $stock = true;
+
                                         //Si la pregunta de stock es más reciente que la que tenía la reemplazo
                                         if ((fechaArticulo.getTime() - $fechaTemprana.getTime()) > 0) {
                                             $fechaTemprana = fechaArticulo;
@@ -131,19 +116,34 @@ async function createArticle(url) {
 
 
 
+
                                         $fecha = $elementoTime.text().substring(0, 10);
+
+
                                     } else {
+                                        if (($respuesta.includes('tenemos')) && (!$respuesta.includes(' no'))) {
+                                            $stock = true;
+                                            //Si la pregunta de stock es más reciente que la que tenía la reemplazo
+                                            if ((fechaArticulo.getTime() - $fechaTemprana.getTime()) > 0) {
+                                                $fechaTemprana = fechaArticulo;
+                                                $respuestaDefinitiva = $respuesta;
+                                            }
 
-                                        //Probablemente no hay stock, ver que hacer. 
 
+
+                                            $fecha = $elementoTime.text().substring(0, 10);
+                                        } else {
+
+                                            //Probablemente no hay stock, ver que hacer. 
+
+                                        }
                                     }
-                                }
 
+                                }
                             }
                         }
                     }
                 }
-            }
 
                 resolve({
                     'titulo': titulo,

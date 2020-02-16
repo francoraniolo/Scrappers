@@ -33,20 +33,20 @@ function findArticulos(input, callback) {
 
             let limite = 0;
 
-            for (let index = 0; index < resultados.length && limite<10; index++) {
+            for (let index = 0; index < resultados.length && limite < 10; index++) {
 
                 existe = true;
                 $el = $(resultados[index]).find('span.main-title');
                 $titulo_minus = $el.text().toLowerCase();
 
-                arreglo.forEach(function (entrada) {
+                arreglo.forEach(function(entrada) {
 
                     if (existe) existe = $titulo_minus.includes(entrada);
 
                 })
 
                 if (existe) {
-                    
+
                     $articulos.push($(resultados[index]).find('div.images-viewer').attr('item-url'));
                     limite++;
 
