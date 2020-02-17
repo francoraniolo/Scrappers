@@ -42,8 +42,6 @@ async function createArticle(url) {
                 concat('.').concat(espacioPrecio.find('span.price-info-superscript').text());
 
 
-
-
                 precio = precio.split('\n').join('');
                 precio = precio.split(' ').join('');
                 precio = precio.split('$').join('');
@@ -56,16 +54,17 @@ async function createArticle(url) {
                     precio = precio.split('\n').join('');
                     precio = precio.split(' ').join('');
                     precio = precio.split('$').join('');
-                } else {
-                    if (precio.localeCompare('.') == 0) {
-                        var precio = $('#priceblock_ourprice').text();
-                        precio = precio.split('US$&nbsp;').join('');
-
-                        precio = precio.split('\n').join('');
-                        precio = precio.split(' ').join('');
-                        precio = precio.split('$').join('');
-                    }
                 }
+
+                if (precio.localeCompare('.') == 0) {
+                    var precio = $('#priceblock_ourprice').text();
+                    precio = precio.split('US$&nbsp;').join('');
+
+                    precio = precio.split('\n').join('');
+                    precio = precio.split(' ').join('');
+                    precio = precio.split('$').join('');
+                }
+
 
                 if (precio.localeCompare('\t\t\t\t') == 0) {
                     var espacioPrecio = $('#usedPitchPrice');
