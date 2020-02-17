@@ -44,7 +44,6 @@ async function obtenerArticulos($term) {
 (async() => {
 
     let articuloss = await obtenerArticulos("Joystick ps4");
-    console.log(articuloss);
 
 })();
 

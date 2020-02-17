@@ -45,7 +45,8 @@ export class SidenavComponent implements OnDestroy {
   async getArticulos(form: NgForm){
     
     this.articulos = await this.articulosservice.getArticulos(form.name.toString());
-    console.log(form.name.toString())
+    
+    
     
  
    }
