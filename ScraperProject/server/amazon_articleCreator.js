@@ -12,10 +12,12 @@ async function createArticle(url) {
                 //Busco la imagen 
 
                 var imagenLink = $('li.itemNo0').find('img').attr('src');
-                if (imagenLink.length > 150) {
-                    imagenLink = $('li.itemNo0');
-                    imagenLink = imagenLink.find('#imgTagWrapperId').find('img').attr('data-old-hires');
+                if (imagenLink != null) {
+                    if (imagenLink.length > 150) {
+                        imagenLink = $('li.itemNo0');
+                        imagenLink = imagenLink.find('#imgTagWrapperId').find('img').attr('data-old-hires');
 
+                    }
                 }
 
                 //Busco el titulo

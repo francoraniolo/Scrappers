@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ArticulosComponent implements OnInit {
   
   @Input() articulos: Object[];
+  @Input() articulosAmazon: Object[];
 
   constructor( ) { }
 

@@ -13,7 +13,7 @@ export class ArticulosService {
 
   constructor(private http: HttpClient) { }
 
-   async getArticulos(termino: string) {
+   async getArticulos(termino: string) : Promise<Object> {
 
       this.articulos = await this.http.get(this.URL_API+`/${termino}`).toPromise();
       return this.articulos;

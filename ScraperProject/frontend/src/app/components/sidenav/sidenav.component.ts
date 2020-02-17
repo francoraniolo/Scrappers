@@ -15,6 +15,9 @@ import { NgForm } from '@angular/forms';
 export class SidenavComponent implements OnDestroy {
 
   articulos: Object ;
+  articulosAmazon: Object ;
+  listaArticulos : Object;
+  
   
   readonly URL_API = 'http://localhost:3000/api/articulos';
 
@@ -44,11 +47,10 @@ export class SidenavComponent implements OnDestroy {
 
   async getArticulos(form: NgForm){
     
-    this.articulos = await this.articulosservice.getArticulos(form.name.toString());
+    this.listaArticulos = await this.articulosservice.getArticulos(form.name.toString());
+    this.articulos = this.listaArticulos[0];
+    this.articulosAmazon = this.listaArticulos[1];
     
-    
-    
- 
    }
 
  
