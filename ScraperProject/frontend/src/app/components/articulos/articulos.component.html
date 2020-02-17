@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container " *ngIf="mostrar">
     <!-- <div class="row" *ngFor="let articulo of articulos; index as i;"> -->
     <!-- <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 columna"> -->
 
@@ -11,7 +11,7 @@
                 <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
             </mat-card-header>
             <div class="contenedorImagen" style="padding-top: 3vh;">
-                <a [href]=articulo.url>
+                <a [href]=articulo.url target="_blank">
 
 
                     <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
@@ -43,7 +43,7 @@
                 <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
             </mat-card-header>
             <div class="contenedorImagen" style="padding-top: 3vh;">
-                <a [href]=articulo.url>
+                <a [href]=articulo.url target="_blank">
 
 
                     <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
@@ -75,7 +75,7 @@
                 <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
             </mat-card-header>
             <div class="contenedorImagen" style="padding-top: 3vh;">
-                <a [href]=articulo.url>
+                <a [href]=articulo.url target="_blank">
 
 
                     <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
@@ -91,6 +91,15 @@
                     </h1>
                     <div style="max-width: max-content; max-height: max-content; float:right" align="end">
                         <button mat-button style="font-size: 20px;">Boton de momento</button>
+
+                        <nav>
+                            <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
+                                                                                   precio: articulo.precio | json, 
+                                                                                   imagen: articulo.imagen | json,
+                                                                                   stock: articulo.stock | json,
+                                                                                   comentario: articulo.respuesta | json,
+                                                                                   ecommerce: articulo.ecommerce | json}">Detalle</a>
+                        </nav>
                     </div>
                 </div>
 
@@ -100,3 +109,5 @@
     <!-- </div> -->
     <!-- </div> -->
 </div>
+
+<router-outlet></router-outlet>

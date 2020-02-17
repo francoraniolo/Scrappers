@@ -2,7 +2,6 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { ArticulosService } from "../../services/articulos.service";
 
-import {Articulo} from '../../models/articulo';
 import { NgForm } from '@angular/forms';
 
 /** @title Responsive sidenav */
@@ -14,8 +13,8 @@ import { NgForm } from '@angular/forms';
 })
 export class SidenavComponent implements OnDestroy {
 
-  articulos: Object ;
-  articulosAmazon: Object ;
+  articulos: Object;
+  articulosAmazon: Object;
   listaArticulos : Object;
   
   

@@ -30,7 +30,7 @@ import { MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
-
+import { DetalleArticuloComponent } from './components/detalle-articulo/detalle-articulo.component';
 
 
 @NgModule({
@@ -38,9 +38,11 @@ import {MatMenuModule} from '@angular/material/menu';
     AppComponent,
     ArticulosComponent,
     NavbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    DetalleArticuloComponent
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -63,8 +65,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatMenuModule,
-
+    MatMenuModule
+    
     
   ],
   providers: [],
