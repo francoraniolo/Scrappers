@@ -40,13 +40,13 @@ async function obtenerArticulos($term) {
 }
 
 
-
+/*
 (async() => {
 
     let articuloss = await obtenerArticulos("Joystick ps4");
 
 })();
-
+*/
 
 module.exports = {
     obtenerArticulos

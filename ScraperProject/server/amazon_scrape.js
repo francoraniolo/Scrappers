@@ -33,7 +33,7 @@ function findArticulos(input, callback) {
             var $el, $titulo, $titulo_minus;
 
             var resultados = siteHeading.find('div.s-result-item');
-            console.log("resultados length", resultados.length);
+
             let limite = 0;
 
             for (let index = 0; index < resultados.length && limite < 10; index++) {

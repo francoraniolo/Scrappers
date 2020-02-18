@@ -47,9 +47,17 @@ async function createArticle(url) {
                 precio = precio.split('$').join('');
 
 
-                if (precio.localeCompare('') == 0) {
-                    var precio = $('#price_inside_buybox').text();
-                    precio = precio.split('US$&nbsp;').join('');
+
+
+
+
+
+                if (precio.localeCompare('\t\t\t\t') == 0) {
+                    var espacioPrecio = $('#usedPitchPrice');
+                    var precioPrimerParte = espacioPrecio.find('span.price-large');
+
+                    var precio = precioPrimerParte.text().
+                    concat('.').concat(espacioPrecio.find('span.price-info-superscript').text());
 
                     precio = precio.split('\n').join('');
                     precio = precio.split(' ').join('');
@@ -65,13 +73,19 @@ async function createArticle(url) {
                     precio = precio.split('$').join('');
                 }
 
+                if (precio.localeCompare('') == 0) {
+                    var precio = $('#price_inside_buybox').text();
+                    precio = precio.split('US$&nbsp;').join('');
 
-                if (precio.localeCompare('\t\t\t\t') == 0) {
-                    var espacioPrecio = $('#usedPitchPrice');
-                    var precioPrimerParte = espacioPrecio.find('span.price-large');
+                    precio = precio.split('\n').join('');
+                    precio = precio.split(' ').join('');
+                    precio = precio.split('$').join('');
+                }
 
-                    var precio = precioPrimerParte.text().
-                    concat('.').concat(espacioPrecio.find('span.price-info-superscript').text());
+                if (precio.localeCompare('') == 0) {
+
+                    var precio = $('#newBuyBoxPrice').text();
+                    precio = precio.split('US$&nbsp;').join('');
 
                     precio = precio.split('\n').join('');
                     precio = precio.split(' ').join('');

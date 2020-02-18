@@ -1,0 +1,37 @@
+<div class="fondo">
+
+
+
+    <mat-toolbar class="example-toolbar">
+
+        <h1 class="example-app-name">Scrappers App</h1>
+        <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
+            <div style="max-width: fit-content;">
+
+            </div>
+
+        </div>
+
+    </mat-toolbar>
+
+    <div class="main-container" style="display: flex;">
+
+        <div>
+
+            <img [src]="imagen" style="display: block;" class="rounded float-left img-fluid" alt="Imagen de Articulo">
+
+
+
+            <h1 class="display-3 titulo" style="margin: 3%;">{{titulo}}</h1>
+
+            <h1 class="display-1 precio" style="margin: 3%">{{precio}}</h1>
+
+
+            <h1 class="display-2 stock" style="margin: 3%; color:forestgreen" *ngIf="stock">En Stock.</h1>
+            <h1 class="display-2 stock" style="margin: 3%; color:maroon" *ngIf="!stock">Probablemente no haya stock.</h1>
+        </div>
+
+
+    </div>
+
+</div>
