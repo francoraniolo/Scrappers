@@ -16,18 +16,22 @@ export class DetalleArticuloComponent implements OnInit {
   ecommerce : string;
   stock: boolean;
   imagen: string;
+  url: string;
+  fecha: string;
+  respuesta: string;
 
   constructor(private router: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.router.queryParams.subscribe(params =>{
+  ngOnInit(): void {  
+      this.router.queryParams.subscribe(params =>{
       this.titulo = JSON.parse(params['titulo']);
       this.precio = JSON.parse(params['precio']);
       this.ecommerce = JSON.parse(params['ecommerce']);
       this.stock = JSON.parse(params['stock']);
       this.imagen = JSON.parse(params['imagen']);
-
-
+      this.url = JSON.parse(params['url']);
+      this.fecha = JSON.parse(params['fecha']);
+      this.respuesta = JSON.parse(params['respuesta']);
     })
   }
 

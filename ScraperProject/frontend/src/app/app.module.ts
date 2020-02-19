@@ -31,6 +31,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { DetalleArticuloComponent } from './components/detalle-articulo/detalle-articulo.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { DetalleArticuloComponent } from './components/detalle-articulo/detalle-
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    FontAwesomeModule
     
     
   ],
