@@ -9,7 +9,9 @@ import {Articulo} from '../models/articulo';
 export class ArticulosService {
   termino: string; 
   articulos: Object;
+  dolar : Object;
   readonly URL_API = 'http://localhost:3000/api/articulos';
+  
 
   constructor(private http: HttpClient) { }
 
@@ -18,5 +20,10 @@ export class ArticulosService {
       this.articulos = await this.http.get(this.URL_API+`/${termino}`).toPromise();
       return this.articulos;
   
+  }
+
+  async getDolar() : Promise<Object> {
+    this.dolar = await this.http.get(this.URL_API+'/dolar').toPromise();
+    return this.dolar;
   }
 }
