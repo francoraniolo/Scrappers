@@ -16,15 +16,19 @@ export class ArticulosComponent implements OnInit {
   @Input() articulosAmazon: Object[];
 
   valorDolar : Object;
+  valorDolarString : string;
 
   mostrar: boolean = true;
 
   constructor(private articulosservice : ArticulosService) { }
 
   ngOnInit(): void {
-    async() =>{
-      this.valorDolar = await this.articulosservice.getDolar();
-    }
+    this.pedirDolar();
+  }
+
+  async pedirDolar(){
+    this.valorDolar = await this.articulosservice.getDolar();
+    console.log("VALOR DOLAR FRONTEND ",this.valorDolar);
   }
 
   esconderArticulos() {
