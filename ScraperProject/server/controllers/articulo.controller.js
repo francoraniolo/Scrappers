@@ -4,6 +4,8 @@ const scrapeart = require('../scrapeart');
 
 const amazon_scrapeart = require('../amazon_scrapeart');
 
+const dolar = require('../dolarValue');
+
 articuloCtrl.getArticulos = async(req, res) => {
 
     $term = req.params.termino;
@@ -17,8 +19,20 @@ articuloCtrl.getArticulos = async(req, res) => {
             res.json(values);
         }
     ).catch(reason => {
-        console.log(reason)
+        console.log(reason);
+
     });;
+}
+
+articuloCtrl.getDolar = async(req, res) => {
+    dolar.getDolar("https://www.precio-dolar.com.ar/").then(value => {
+            res.json(value);
+        }
+
+    ).catch(reason => {
+        console.log(reason);
+
+    });
 }
 
 

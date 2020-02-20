@@ -24,11 +24,28 @@ function getDolarValue(url, callback) {
     });
 }
 
-getDolarValue(url, function(err, dolarAhora) {
-    if (err) {
-        console.log(err);
-        return;
-    } else {
-        console.log("El valor del dolar ahora es ", dolarAhora);
-    }
+function getDolar(url) {
+
+    return new Promise((resolve, reject) => {
+        getDolarValue(url, function(err, value) {
+            if (err) {
+                console.log(err);
+                reject(err);
+                return;
+            } else {
+                console.log("El valor es ", value);
+                resolve(value);
+            }
+        });
+    });
+}
+
+
+getDolar(url).then(function(res) {
+    console.log("Res es ", res);
 });
+
+
+module.exports = {
+    getDolar
+}

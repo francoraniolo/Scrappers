@@ -19,6 +19,7 @@ app.use(cors({
 //Routes
 app.use('/api/articulos', require('./routes/articulos.routes'));
 
+
 //Starting the server
 app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));

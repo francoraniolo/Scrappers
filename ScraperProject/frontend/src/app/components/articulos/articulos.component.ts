@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-articulos',
   templateUrl: './articulos.component.html',
@@ -11,9 +13,11 @@ export class ArticulosComponent implements OnInit {
   @Input() articulos: Object[];
   @Input() articulosAmazon: Object[];
 
+
+
   mostrar: boolean = true;
 
-  constructor( ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
