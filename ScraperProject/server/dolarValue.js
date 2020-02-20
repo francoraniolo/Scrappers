@@ -1,7 +1,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
-const url = "http://www.dolarhoy.com";
+const url = "https://www.precio-dolar.com.ar/";
 
 function getDolarValue(url, callback) {
 
@@ -10,9 +10,10 @@ function getDolarValue(url, callback) {
         if (!error && response.statusCode == 200) {
             const $ = cheerio.load(html);
 
-            var valorDolar = $('span.pull-right').text();
+            var valorDolar = $('div.sc-htoDjs').text();
 
-            console.log("El valor del dolar ahora es ", valorDolar);
+            var arreglo = valorDolar.split('$');
+            valorDolar = arreglo[2];
 
             callback(null, valorDolar);
 
@@ -28,6 +29,6 @@ getDolarValue(url, function(err, dolarAhora) {
         console.log(err);
         return;
     } else {
-        console.log(dolarAhora);
+        console.log("El valor del dolar ahora es ", dolarAhora);
     }
 });
