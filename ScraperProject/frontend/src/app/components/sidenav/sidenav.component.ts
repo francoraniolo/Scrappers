@@ -15,6 +15,7 @@ export class SidenavComponent implements OnDestroy {
 
   articulos: Object;
   articulosAmazon: Object;
+  articulosEbay : Object;
   listaArticulos : Object;
   
   
@@ -49,7 +50,8 @@ export class SidenavComponent implements OnDestroy {
     this.listaArticulos = await this.articulosservice.getArticulos(form.name.toString());
     this.articulos = this.listaArticulos[0];
     this.articulosAmazon = this.listaArticulos[1];
-    
+    this.articulosEbay = this.listaArticulos[2];
+
    }
 
  

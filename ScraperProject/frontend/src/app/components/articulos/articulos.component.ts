@@ -14,9 +14,10 @@ export class ArticulosComponent implements OnInit {
   
   @Input() articulos: Object[];
   @Input() articulosAmazon: Object[];
+  @Input() articulosEbay : Object[];
 
   valorDolar : Object;
-  valorDolarString : string;
+  
 
   mostrar: boolean = true;
 

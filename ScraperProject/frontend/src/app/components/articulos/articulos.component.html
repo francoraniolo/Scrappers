@@ -36,7 +36,7 @@
     <div class="column-left">
         <mat-card class="example-card" *ngFor="let articulo of articulos; index as i;">
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image" style="background-image: url('https://pbs.twimg.com/profile_images/3596669314/95250957ca13505b8668022fcc830da5.jpeg'); background-size: cover;">
+                <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/MercadolibreIcono.jpeg'); background-size: cover;">
                 </div>
                 <mat-card-title> {{articulo.titulo}} </mat-card-title>
                 <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
@@ -66,9 +66,9 @@
     </div>
 
     <div class="column-right">
-        <mat-card class="example-card" *ngFor="let articulo of articulos; index as i;">
+        <mat-card class="example-card" *ngFor="let articulo of articulosEbay; index as i;">
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image" style="background-image: url('https://pbs.twimg.com/profile_images/3596669314/95250957ca13505b8668022fcc830da5.jpeg'); background-size: cover;">
+                <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/ebayIcono.png'); background-size: cover;">
                 </div>
                 <mat-card-title> {{articulo.titulo}} </mat-card-title>
                 <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
