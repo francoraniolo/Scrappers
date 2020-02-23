@@ -38,6 +38,14 @@ h1.example-app-name {
     width: 30%;
 }
 
+.buscadorForm {
+    width: max-content;
+}
+
+.fa-search {
+    margin-right: 3vw;
+}
+
 @media screen and (max-width: 767px) {
     .mat-sidenav {
         width: 40%;

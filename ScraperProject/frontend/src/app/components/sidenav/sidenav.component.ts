@@ -4,6 +4,11 @@ import { ArticulosService } from "../../services/articulos.service";
 
 import { NgForm } from '@angular/forms';
 
+import { AuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+
+
+
 /** @title Responsive sidenav */
 @Component({
   selector: 'app-sidenav',
@@ -35,10 +40,22 @@ export class SidenavComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(private articulosservice : ArticulosService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private authService: AuthService,private articulosservice : ArticulosService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+ 
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  } 
+ 
+  signOut(): void {
+    this.authService.signOut();
   }
 
   ngOnDestroy(): void {

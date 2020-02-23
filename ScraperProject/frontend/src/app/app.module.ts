@@ -33,6 +33,24 @@ import {MatMenuModule} from '@angular/material/menu';
 import { DetalleArticuloComponent } from './components/detalle-articulo/detalle-articulo.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+//Modulos para inicio de sesion con redes sociales
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("136770215822-q80ve66gvaks6smos66u7ocf1amhviq1.apps.googleusercontent.com")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("Facebook-App-Id")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -41,6 +59,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     SidenavComponent,
     DetalleArticuloComponent
+   
   ],
   imports: [
     
@@ -67,11 +86,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    FontAwesomeModule
-    
+    FontAwesomeModule,
+    SocialLoginModule
     
   ],
-  providers: [],
+  providers: [
+    {
+    provide: AuthServiceConfig,
+    useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

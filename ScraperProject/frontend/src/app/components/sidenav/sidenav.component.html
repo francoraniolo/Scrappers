@@ -5,13 +5,18 @@
         <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
             <div style="max-width: fit-content;">
 
-                <form #articuloForm="ngForm" (ngSubmit)="getArticulos(articuloForm.value)" class="form-inline active-cyan-4">
-                    <input class="form-control form-control-md mr-5 w-120" type="text" name="name" placeholder="Busca productos..." aria-label="Search" ngModel>
-                    <i class="fas fa-search" aria-hidden="true"></i>
+                <form #articuloForm="ngForm" (ngSubmit)="getArticulos(articuloForm.value)" class="form-inline active-cyan-4 clearfix buscadorForm">
+                    <input class="form-control form-control-md mr-3 w-120" type="text" name="name" placeholder="Busca productos..." aria-label="Search" ngModel>
+                    <i class="fa fa-search" aria-hidden="true"></i>
                 </form>
             </div>
 
         </div>
+
+        <button class="btn btn-danger" (click)="signInWithGoogle()">
+            <i class="fa fa-google"></i>
+            Google sign in
+        </button>
 
     </mat-toolbar>
 
