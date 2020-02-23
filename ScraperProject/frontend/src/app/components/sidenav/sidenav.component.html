@@ -9,14 +9,28 @@
                     <input class="form-control form-control-md mr-3 w-120" type="text" name="name" placeholder="Busca productos..." aria-label="Search" ngModel>
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </form>
+
+
             </div>
 
         </div>
 
-        <button class="btn btn-danger" (click)="signInWithGoogle()">
+        <button *ngIf="!user" class="btn btn-danger" (click)="signInWithGoogle()">
             <i class="fa fa-google"></i>
-            Google sign in
+            Iniciar Sesión
         </button>
+
+        <img *ngIf="user" src="{{ user.photoUrl }}" alt="Avatar" class="avatar">
+        <div *ngIf="user">
+            <!-- <h4>{{ user.name }}</h4> -->
+            <!-- <p>{{ user.email }}</p> -->
+            <button class="btn btn-primary botonFavorito">Favoritos</button>
+        </div>
+
+        <button *ngIf="user" class="btn btn-primary" (click)="signOut()">
+            <i class="fa fa-sign-out"></i> Cerrar Sesión
+        </button>
+
 
     </mat-toolbar>
 

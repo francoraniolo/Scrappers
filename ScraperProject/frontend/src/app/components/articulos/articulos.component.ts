@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ArticulosService } from "../../services/articulos.service";
 import { async } from '@angular/core/testing';
 
@@ -19,21 +19,33 @@ export class ArticulosComponent implements OnInit {
   valorDolar : Object;
   
 
-  mostrar: boolean = true;
+
+  // mostrar: boolean = true;
 
   constructor(private articulosservice : ArticulosService) { }
 
   ngOnInit(): void {
     this.pedirDolar();
+
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    this.articulosAmazon.forEach(articulo =>{
+      articulo['precio']='Hola';
+    })
+
   }
 
   async pedirDolar(){
     this.valorDolar = await this.articulosservice.getDolar();
-    console.log("VALOR DOLAR FRONTEND ",this.valorDolar);
+    
   }
 
-  esconderArticulos() {
-    this.mostrar=!this.mostrar;
-  }
+  // esconderArticulos() {
+  //   this.mostrar=!this.mostrar;
+  // }
 
 }

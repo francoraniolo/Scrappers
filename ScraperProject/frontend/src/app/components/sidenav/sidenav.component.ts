@@ -1,10 +1,11 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { ArticulosService } from "../../services/articulos.service";
 
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 
@@ -16,27 +17,20 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
   styleUrls: ['sidenav.component.css'],
   providers: [ArticulosService]
 })
-export class SidenavComponent implements OnDestroy {
+export class SidenavComponent implements OnDestroy, OnInit {
 
   articulos: Object;
   articulosAmazon: Object;
   articulosEbay : Object;
   listaArticulos : Object;
   
+  user: SocialUser;
+  loggedIn: boolean;
   
   readonly URL_API = 'http://localhost:3000/api/articulos';
 
     panelOpenState = false;
   mobileQuery: MediaQueryList;
-
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
 
@@ -60,6 +54,15 @@ export class SidenavComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  ngOnInit(): void {
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+    
   }
 
   async getArticulos(form: NgForm){
