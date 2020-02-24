@@ -86,7 +86,7 @@ export class ArticulosComponent implements OnInit {
    this.precioPromedio = this.suma/(this.cantidadItems-this.cantidadARestar);
 
    console.log("PRECIO PROMEDIO",this.precioPromedio);
-   console.log("CANTIDAD ITEMS",this.cantidadItems);
+   console.log("CANTIDAD ITEMS",this.cantidadItems-this.cantidadARestar);
    console.log("SUMA",this.suma);
 
   }

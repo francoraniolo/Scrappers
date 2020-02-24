@@ -17,12 +17,11 @@ async function createArticle(url) {
                         imagenLink = $('li.itemNo0');
                         imagenLink = imagenLink.find('#imgTagWrapperId').find('img').attr('data-old-hires');
 
+                    } else {
+                        imagenLink = null;
                     }
                 }
 
-                if (imagenLink.localeCompare('') == 0) {
-                    imagenLink = null;
-                }
 
                 //Busco el titulo
 

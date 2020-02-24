@@ -47,7 +47,7 @@
     }
     
     .column-right {
-        float: right;
+        float: left;
         width: 32%;
     }
     
@@ -55,7 +55,6 @@
         /* display: inline-block; */
         display: inline-table;
         width: 32%;
-        margin-left: 1.6vw;
     }
     
     .precio {
@@ -65,6 +64,10 @@
     
     .goodPrice {
         color: #4CFE30;
+    }
+    
+    .btn-success {
+        margin-right: 1vw;
     }
     
     @media screen and (max-width: 767px) {

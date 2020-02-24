@@ -24,10 +24,20 @@
                         ARS$ {{articulo.precio}}
                     </h1>
                     <h1 *ngIf="!articulo.precio" class="precio">
-                        Desconocido
+                        $Desconocido
                     </h1>
 
-                    <button mat-button style="font-size: 20px;">Detalles</button>
+                    <nav align="end">
+                        <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
+                                                                               precio: articulo.precio | json, 
+                                                                               imagen: articulo.imagen | json,
+                                                                               stock: articulo.stock | json,
+                                                                               comentario: articulo.respuesta | json,
+                                                                               ecommerce: articulo.ecommerce | json,
+                                                                               fecha: articulo.fecha | json,
+                                                                               respuesta: articulo.respuesta | json,
+                                                                               url : articulo.url | json}"><button class="btn btn-success">Detalles</button></a>
+                    </nav>
 
                 </div>
 
@@ -59,11 +69,21 @@
             <mat-card-actions>
                 <div class="clearfix" style="overflow: hidden; ">
 
-                    <h1 class="precio">
+                    <h1 class="precio" [ngClass]="{'goodPrice': articulo.precio<=precioPromedio}">
                         ARS$ {{articulo.precio}}
                     </h1>
 
-                    <button mat-button style="font-size: 20px;">Detalles</button>
+                    <nav align="end">
+                        <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
+                                                                               precio: articulo.precio | json, 
+                                                                               imagen: articulo.imagen | json,
+                                                                               stock: articulo.stock | json,
+                                                                               comentario: articulo.respuesta | json,
+                                                                               ecommerce: articulo.ecommerce | json,
+                                                                               fecha: articulo.fecha | json,
+                                                                               respuesta: articulo.respuesta | json,
+                                                                               url : articulo.url | json}"><button class="btn btn-success">Detalles</button></a>
+                    </nav>
 
                 </div>
 
@@ -91,11 +111,11 @@
             <mat-card-actions>
                 <div class="clearfix" style="overflow: hidden; ">
 
-                    <h1 class="precio">
+                    <h1 class="precio" [ngClass]="{'goodPrice': articulo.precio<=precioPromedio}">
                         ARS$ {{articulo.precio}}
                     </h1>
 
-                    <nav>
+                    <nav align="end">
                         <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
                                                                                precio: articulo.precio | json, 
                                                                                imagen: articulo.imagen | json,
@@ -104,7 +124,7 @@
                                                                                ecommerce: articulo.ecommerce | json,
                                                                                fecha: articulo.fecha | json,
                                                                                respuesta: articulo.respuesta | json,
-                                                                               url : articulo.url | json}">Detalle</a>
+                                                                               url : articulo.url | json}"><button class="btn btn-success">Detalles</button></a>
                     </nav>
 
                 </div>
