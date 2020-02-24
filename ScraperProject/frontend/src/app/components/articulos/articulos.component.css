@@ -40,18 +40,23 @@
         margin-left: 0vh;
         margin-right: 0vh;
     }
+    /*
+    LEFT EN REALIDAD ES CENTER Y CENTER ES LEFT;
+    */
     
     .column-left {
+        float: left;
+        width: 32%;
+        margin-left: 0.5vw;
+        margin-right: 0.5vw;
+    }
+    
+    .column-center {
         float: left;
         width: 32%;
     }
     
     .column-right {
-        float: left;
-        width: 32%;
-    }
-    
-    .column-center {
         /* display: inline-block; */
         display: inline-table;
         width: 32%;
