@@ -23,7 +23,8 @@ async function createArticle(url) {
 
                 titulo = titulo.split('\t').join('');
                 titulo = titulo.split('\n').join('');
-
+                titulo = titulo.split('Detalles acerca de  ').join('');
+                titulo = titulo.replace(/\s+/, "");
 
 
                 //Busco los precios
@@ -40,7 +41,17 @@ async function createArticle(url) {
                     precio = $('#convbinPrice').text();
                 }
 
+                if (precio.localeCompare('') == 0) {
+                    precio = $('#mm-saleDscPrc').text();
+                }
+
+
+
                 precio = precio.split('(con envío incluido)').join('');
+                precio = precio.split('US $').join('');
+
+                precio = precio.replace(/\s/g, '');
+
 
                 var $stock = true;
                 var $fecha = null;
@@ -67,6 +78,8 @@ async function createArticle(url) {
     });
 
 }
+
+
 
 module.exports = {
     createArticle

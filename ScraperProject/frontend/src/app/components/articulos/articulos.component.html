@@ -1,6 +1,5 @@
 <div class="container ">
-    <!-- <div class="row" *ngFor="let articulo of articulos; index as i;"> -->
-    <!-- <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 columna"> -->
+
 
     <div class="column-center">
         <mat-card class="example-card" *ngFor="let articulo of articulosAmazon; index as i;">
@@ -13,21 +12,28 @@
             <div class="contenedorImagen" style="padding-top: 3vh;">
                 <a [href]=articulo.url target="_blank">
 
-
-                    <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
+                    <img mat-card-image *ngIf="articulo.imagen" class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
+                    <img mat-card-image *ngIf="!articulo.imagen" class="img_articulo" src="../../../assets/no-image-found.png" alt="Imagen de articulo">
                 </a>
             </div>
 
             <mat-card-actions>
                 <div class="clearfix" style="overflow: hidden; ">
 
-                    <h1 class="precio">
-                        US$ {{articulo.precio}}
+                    <h1 *ngIf="articulo.precio" class="precio" [ngClass]="{'goodPrice': articulo.precio<=precioPromedio}">
+                        ARS$ {{articulo.precio}}
                     </h1>
-                    <div style="max-width: max-content; max-height: max-content; float:right" align="end">
-                        <button mat-button style="font-size: 20px;">{{valorDolar}}</button>
-                    </div>
+                    <h1 *ngIf="!articulo.precio" class="precio">
+                        Desconocido
+                    </h1>
+
+                    <button mat-button style="font-size: 20px;">Detalles</button>
+
                 </div>
+
+                <!-- <div style="max-width: max-content; max-height: max-content; float:right" align="end">
+                    <button mat-button style="font-size: 20px;">Detalles</button>
+                </div> -->
 
             </mat-card-actions>
         </mat-card>
@@ -54,11 +60,11 @@
                 <div class="clearfix" style="overflow: hidden; ">
 
                     <h1 class="precio">
-                        {{articulo.precio}}
+                        ARS$ {{articulo.precio}}
                     </h1>
-                    <div style="max-width: max-content; max-height: max-content; float:right" align="end">
-                        <button mat-button style="font-size: 20px;">Boton de momento</button>
-                    </div>
+
+                    <button mat-button style="font-size: 20px;">Detalles</button>
+
                 </div>
 
             </mat-card-actions>
@@ -86,24 +92,23 @@
                 <div class="clearfix" style="overflow: hidden; ">
 
                     <h1 class="precio">
-                        {{articulo.precio}}
+                        ARS$ {{articulo.precio}}
                     </h1>
-                    <div style="max-width: max-content; max-height: max-content; float:right" align="end">
-                        <button mat-button style="font-size: 20px;">Boton de momento</button>
 
-                        <nav>
-                            <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
-                                                                                   precio: articulo.precio | json, 
-                                                                                   imagen: articulo.imagen | json,
-                                                                                   stock: articulo.stock | json,
-                                                                                   comentario: articulo.respuesta | json,
-                                                                                   ecommerce: articulo.ecommerce | json,
-                                                                                   fecha: articulo.fecha | json,
-                                                                                   respuesta: articulo.respuesta | json,
-                                                                                   url : articulo.url | json}">Detalle</a>
-                        </nav>
-                    </div>
+                    <nav>
+                        <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
+                                                                               precio: articulo.precio | json, 
+                                                                               imagen: articulo.imagen | json,
+                                                                               stock: articulo.stock | json,
+                                                                               comentario: articulo.respuesta | json,
+                                                                               ecommerce: articulo.ecommerce | json,
+                                                                               fecha: articulo.fecha | json,
+                                                                               respuesta: articulo.respuesta | json,
+                                                                               url : articulo.url | json}">Detalle</a>
+                    </nav>
+
                 </div>
+
 
             </mat-card-actions>
         </mat-card>

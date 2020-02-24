@@ -20,6 +20,10 @@ async function createArticle(url) {
                     }
                 }
 
+                if (imagenLink.localeCompare('') == 0) {
+                    imagenLink = null;
+                }
+
                 //Busco el titulo
 
                 var titulo = $('#productTitle').text();
@@ -45,11 +49,6 @@ async function createArticle(url) {
                 precio = precio.split('\n').join('');
                 precio = precio.split(' ').join('');
                 precio = precio.split('$').join('');
-
-
-
-
-
 
 
                 if (precio.localeCompare('\t\t\t\t') == 0) {
@@ -92,7 +91,33 @@ async function createArticle(url) {
                     precio = precio.split('$').join('');
                 }
 
-                //Si hay dos, es porque esta en oferta y el segundo es el precio actual
+                if (precio.localeCompare('') == 0) {
+
+                    var precio = $('#buyNewSection').find('span.offer-price').text();
+                    precio = precio.split('US$&nbsp;').join('');
+
+                    precio = precio.split('\n').join('');
+                    precio = precio.split(' ').join('');
+                    precio = precio.split('$').join('');
+                }
+
+
+                if (precio.localeCompare('') == 0) {
+
+                    var precio = $('#newOfferAccordionRow').find('div.a-span4').find('span.a-color-price').text();
+                    precio = precio.split('US$&nbsp;').join('');
+                    precio = precio.split('\t').join('');
+                    precio = precio.split('\n').join('');
+                    precio = precio.split(' ').join('');
+                    precio = precio.split('$').join('');
+                }
+
+                precio = precio.split(',').join('');
+
+                if (precio.localeCompare('') == 0) {
+                    precio = null;
+                }
+
                 var disponibilidad = $('#availability').text();
 
                 var $stock = (!disponibilidad.includes('No disponible'));

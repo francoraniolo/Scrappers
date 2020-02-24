@@ -37,11 +37,15 @@ function findArticulos(input, callback) {
             let limite = 0;
 
             for (let index = 0; index < resultados.length && limite < 10; index++) {
-
-                $url_articulo = 'https://www.amazon.com'.concat($(resultados[index]).find('a.a-link-normal').attr('href'));
-                if (!$url_articulo.includes('/gp/')) {
-                    $articulos.push($url_articulo);
-                    limite++;
+                let texto = $(resultados[index]).text();
+                let esPelicula = texto.includes('Prime Video');
+                let esApp = texto.includes('App');
+                if (!esPelicula && !esApp) {
+                    $url_articulo = 'https://www.amazon.com'.concat($(resultados[index]).find('a.a-link-normal').attr('href'));
+                    if ((!$url_articulo.includes('/gp/')) && (!$url_articulo.includes('nav_sdd'))) {
+                        $articulos.push($url_articulo);
+                        limite++;
+                    }
                 }
 
 

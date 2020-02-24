@@ -33,17 +33,17 @@ function getDolar(url) {
                 reject(err);
                 return;
             } else {
-                console.log("El valor es ", value);
+
                 resolve(value);
             }
         });
     });
 }
 
-
+/*
 getDolar(url).then(function(res) {
     console.log("Res es ", res);
-});
+}); */
 
 
 module.exports = {

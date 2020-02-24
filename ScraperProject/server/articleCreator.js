@@ -29,12 +29,11 @@ async function createArticle(url) {
                 titulo = titulo.split('\t').join('');
                 titulo = titulo.split('\n').join('');
 
-
-
                 //Busco los precios
+
                 if (estiloViejo) {
                     var spans = $('span.price-tag-fraction');
-                    var precio = 'ARS $ '.concat($(spans[0]).text());
+                    var precio = ($(spans[0]).text());
 
                 } else {
 
@@ -46,12 +45,15 @@ async function createArticle(url) {
                     //Si hay dos, es porque esta en oferta y el segundo es el precio actual
 
                     if (priceTags.length > 1) {
-                        precio = '$ '.concat($(priceTags[1]).text());
+                        precio = ($(priceTags[1]).text());
                     } else {
-                        precio = '$ '.concat($(priceTags[0]).text());
+                        precio = ($(priceTags[0]).text());
                     }
 
                 }
+
+                precio = precio.split('$').join('');
+                precio = precio.split('.').join('');
 
                 var $stock = false;
                 var $fecha, $fechaTemprana;

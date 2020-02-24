@@ -20,8 +20,6 @@ async function obtenerArticulos($term) {
 
                     $articulos_atributos = new Array();
 
-
-
                     $promesas = new Array();
 
                     for (element of articls) {

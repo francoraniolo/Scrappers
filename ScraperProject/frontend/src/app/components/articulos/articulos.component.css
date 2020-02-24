@@ -4,6 +4,7 @@
     
     .mat-card-header .mat-card-title {
         height: 10vh;
+        width: 20ch;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -60,6 +61,10 @@
     .precio {
         margin-left: 9%;
         float: left;
+    }
+    
+    .goodPrice {
+        color: #4CFE30;
     }
     
     @media screen and (max-width: 767px) {
