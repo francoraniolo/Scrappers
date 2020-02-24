@@ -2,6 +2,48 @@
 
 
     <div class="column-center">
+        <mat-card class="example-card" *ngFor="let articulo of articulos; index as i;">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/MercadolibreIcono.jpeg'); background-size: cover;">
+                </div>
+                <mat-card-title> {{articulo.titulo}} </mat-card-title>
+                <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="contenedorImagen" style="padding-top: 3vh;">
+                <a [href]=articulo.url target="_blank">
+
+
+                    <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
+                </a>
+            </div>
+
+
+            <mat-card-actions>
+                <div class="clearfix" style="overflow: hidden; ">
+
+                    <h1 class="precio" [ngClass]="{'goodPrice': articulo.precio<=precioPromedio}">
+                        ARS$ {{articulo.precio}}
+                    </h1>
+
+                    <nav align="end">
+                        <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
+                                                                               precio: articulo.precio | json, 
+                                                                               imagen: articulo.imagen | json,
+                                                                               stock: articulo.stock | json,
+                                                                               comentario: articulo.respuesta | json,
+                                                                               ecommerce: articulo.ecommerce | json,
+                                                                               fecha: articulo.fecha | json,
+                                                                               respuesta: articulo.respuesta | json,
+                                                                               url : articulo.url | json}"><button class="btn btn-success">Detalles</button></a>
+                    </nav>
+
+                </div>
+
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div class="column-left">
         <mat-card class="example-card" *ngFor="let articulo of articulosAmazon; index as i;">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/amazonIcono.png'); background-size: cover;">
@@ -25,48 +67,6 @@
                     </h1>
                     <h1 *ngIf="!articulo.precio" class="precio">
                         $Desconocido
-                    </h1>
-
-                    <nav align="end">
-                        <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
-                                                                               precio: articulo.precio | json, 
-                                                                               imagen: articulo.imagen | json,
-                                                                               stock: articulo.stock | json,
-                                                                               comentario: articulo.respuesta | json,
-                                                                               ecommerce: articulo.ecommerce | json,
-                                                                               fecha: articulo.fecha | json,
-                                                                               respuesta: articulo.respuesta | json,
-                                                                               url : articulo.url | json}"><button class="btn btn-success">Detalles</button></a>
-                    </nav>
-
-                </div>
-
-            </mat-card-actions>
-        </mat-card>
-    </div>
-
-    <div class="column-left">
-        <mat-card class="example-card" *ngFor="let articulo of articulos; index as i;">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/MercadolibreIcono.jpeg'); background-size: cover;">
-                </div>
-                <mat-card-title> {{articulo.titulo}} </mat-card-title>
-                <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
-            </mat-card-header>
-            <div class="contenedorImagen" style="padding-top: 3vh;">
-                <a [href]=articulo.url target="_blank">
-
-
-                    <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
-                </a>
-            </div>
-
-
-            <mat-card-actions>
-                <div class="clearfix" style="overflow: hidden; ">
-
-                    <h1 class="precio" [ngClass]="{'goodPrice': articulo.precio<=precioPromedio}">
-                        ARS$ {{articulo.precio}}
                     </h1>
 
                     <nav align="end">
