@@ -43,7 +43,7 @@ export class ArticulosComponent implements OnInit {
     if((this.articulos!=null)&&(this.articulosAmazon!=null)&&(this.articulosEbay!=null)){
 
     this.suma=0;
-    
+    this.cantidadARestar=0;
 
     this.articulos.forEach(articulo =>{
       this.suma = this.suma +(parseFloat(articulo['precio']));
@@ -78,6 +78,9 @@ export class ArticulosComponent implements OnInit {
    console.log("PRECIO PROMEDIO",this.precioPromedio);
    console.log("CANTIDAD ITEMS",this.cantidadItems-this.cantidadARestar);
    console.log("SUMA",this.suma);
+
+   this.suma=0;
+   this.cantidadARestar=0;
 
   }
   }

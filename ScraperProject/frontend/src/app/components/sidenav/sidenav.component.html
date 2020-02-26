@@ -1,7 +1,7 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="example-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 class="example-app-name">Scrappers App</h1>
+        <h1 class=" example-app-name"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
         <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
             <div style="max-width: fit-content;">
 
@@ -47,11 +47,13 @@
                 <mat-accordion>
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
+
                             <mat-panel-title>
-                                Mercadolibre
+                                <img class="rounded" src="../../../assets/iconos/MercadolibreIcono.jpeg">
                             </mat-panel-title>
+
                             <mat-panel-description>
-                                Filtros
+                                <p class="filterText" style="font-weight: bold; color:#fff159">Mercadolibre</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
@@ -66,11 +68,10 @@
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Amazon
+                                <img class="rounded" src="../../../assets/iconos/amazonIcono.png">
                             </mat-panel-title>
                             <mat-panel-description>
-                                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
-
+                                <p class="filterText" style="font-weight: bold; color:goldenrod">Amazon USA</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <p>I'm visible because I am open</p>
@@ -78,11 +79,13 @@
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Ebay
+                                <img class="rounded" src="../../../assets/iconos/ebayIcono.png">
                             </mat-panel-title>
                             <mat-panel-description>
-                                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
-
+                                <p class="filterText" style="font-weight: bold; color:red">E</p>
+                                <p class="filterText" style="font-weight: bold; color:blue">b</p>
+                                <p class="filterText" style="font-weight: bold; color:goldenrod">a</p>
+                                <p class="filterText" style="font-weight: bold; color:#4BDA1D">y</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <p>I'm visible because I am open</p>

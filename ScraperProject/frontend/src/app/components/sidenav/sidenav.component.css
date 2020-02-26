@@ -61,6 +61,20 @@ h1.example-app-name {
     margin-right: 2vw;
 }
 
+.rounded {
+    width: 5vw;
+    height: 7vh;
+}
+
+.filterText {
+    margin-top: auto;
+}
+
+.logoPagina {
+    height: -webkit-fill-available;
+    width: auto;
+}
+
 @media screen and (max-width: 767px) {
     .mat-sidenav {
         width: 40%;
