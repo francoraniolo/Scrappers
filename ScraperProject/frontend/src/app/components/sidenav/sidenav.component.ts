@@ -24,7 +24,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
   articulosEbay : Object;
   listaArticulos : Object;
   
-  user: SocialUser;
+  user: SocialUser= null;
   loggedIn: boolean;
   
   readonly URL_API = 'http://localhost:3000/api/articulos';

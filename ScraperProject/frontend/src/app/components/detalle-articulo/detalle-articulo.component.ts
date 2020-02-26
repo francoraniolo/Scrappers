@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { FavoritosService } from '../../services/favoritos.service';  
 
 @Component({
   selector: 'app-detalle-articulo',
@@ -17,10 +18,13 @@ export class DetalleArticuloComponent implements OnInit {
   stock: boolean;
   imagen: string;
   url: string;
-  fecha: string;
-  respuesta: string;
+  fecha: string = '';
+  respuesta: string = '';
+  idUser: string; 
 
-  constructor(private router: ActivatedRoute) { }
+  articulo: Object;
+
+  constructor(private favoritosService: FavoritosService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {  
       this.router.queryParams.subscribe(params =>{
@@ -30,9 +34,38 @@ export class DetalleArticuloComponent implements OnInit {
       this.stock = JSON.parse(params['stock']);
       this.imagen = JSON.parse(params['imagen']);
       this.url = JSON.parse(params['url']);
-      this.fecha = JSON.parse(params['fecha']);
-      this.respuesta = JSON.parse(params['respuesta']);
-    })
+      if(params['fecha']!=null){
+        this.fecha = JSON.parse(params['fecha']);
+      }
+      if(params['respuesta']!=null){
+        this.respuesta = JSON.parse(params['respuesta']);
+      }
+      
+      this.idUser = JSON.parse(params['userEmail']);
+      
+      
+      this.articulo = { 'idUser': this.idUser,
+                        'titulo': this.titulo,
+                        'precio': this.precio,
+                        'ecommerce': this.ecommerce,
+                        'stock': this.stock,
+                        'imagen': this.imagen,
+                        'url': this.url, 
+                        'fecha': this.fecha,
+                        'respuesta': this.respuesta
+      }
+    });
+
+
+
+  }
+
+  addFavorite(){
+    if(this.articulo!=null){
+      this.favoritosService.getAllFavoritos();
+      this.favoritosService.insertFavorito(this.articulo);
+    }
+    
   }
 
 }

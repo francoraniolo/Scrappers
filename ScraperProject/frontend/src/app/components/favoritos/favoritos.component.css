@@ -1,0 +1,84 @@
+.mat-card-actions {
+    margin-top: 12%;
+}
+
+.mat-card-header .mat-card-title {
+    height: 10vh;
+    width: 20ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.example-card {
+    display: block;
+    padding: 7% 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    max-width: 50vw;
+    height: 78vh;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+}
+
+.example-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.contenedorImagen {
+    height: 40vh;
+}
+
+.img_articulo {
+    height: 45vh;
+    width: 100%;
+    margin-left: 0vh;
+    margin-right: 0vh;
+}
+
+.precio {
+    margin-left: 9%;
+    float: left;
+}
+
+.btn-success {
+    margin-right: 1vw;
+}
+
+.lista-title {
+    margin-top: 2vh;
+    font-weight: bold;
+    color: #2BA8FF;
+}
+
+.botonBorrar {
+    width: auto;
+    height: fit-content;
+}
+
+@media screen and (max-width: 767px) {
+    .mat-card {
+        margin-top: 2vh;
+    }
+    .example-card {
+        height: 50vh;
+        width: auto;
+    }
+    .mat-card-header .mat-card-title {
+        height: 4vh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .contenedorImagen {
+        height: 25vh;
+    }
+    .img_articulo {
+        height: 25vh;
+        width: 100%;
+        margin-left: 0vh;
+        margin-right: 0vh;
+    }
+    .mat-card-actions {
+        margin-top: 5%;
+    }
+}

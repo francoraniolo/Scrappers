@@ -32,10 +32,20 @@ import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { DetalleArticuloComponent } from './components/detalle-articulo/detalle-articulo.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
+//Firebase
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
+import { environment } from '../environments/environment';
+
+//Servicio favoritos
+import { FavoritosService } from './services/favoritos.service';
+ 
 //Modulos para inicio de sesion con redes sociales
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+
 
 let config = new AuthServiceConfig([
   {
@@ -58,7 +68,8 @@ export function provideConfig() {
     ArticulosComponent,
     NavbarComponent,
     SidenavComponent,
-    DetalleArticuloComponent
+    DetalleArticuloComponent,
+    FavoritosComponent
    
   ],
   imports: [
@@ -87,14 +98,18 @@ export function provideConfig() {
     MatListModule,
     MatMenuModule,
     FontAwesomeModule,
-    SocialLoginModule
+    SocialLoginModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
+    
     
   ],
   providers: [
     {
     provide: AuthServiceConfig,
     useFactory: provideConfig
-    }
+    },
+    FavoritosService
   ],
   bootstrap: [AppComponent]
 })

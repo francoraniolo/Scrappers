@@ -22,11 +22,11 @@ async function obtenerArticulos($term) {
 
 
                     $promesas = new Array();
-
-                    for (element of articls) {
-                        $promesas.push(artcreator.createArticle(element));
+                    if (articls != null) {
+                        for (element of articls) {
+                            $promesas.push(artcreator.createArticle(element));
+                        }
                     }
-
                     Promise.all($promesas).then(values => {
                         resolve(values);
                     });

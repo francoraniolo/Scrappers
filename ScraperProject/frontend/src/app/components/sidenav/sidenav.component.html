@@ -24,7 +24,14 @@
         <div *ngIf="user">
             <!-- <h4>{{ user.name }}</h4> -->
             <!-- <p>{{ user.email }}</p> -->
-            <button class="btn btn-primary botonFavorito">Favoritos</button>
+
+
+            <nav>
+                <a [routerLink]="['/favoritos']" [queryParams]="{idUser: user.email | json  
+                                                                       }"><button class="btn btn-primary botonFavorito">Favoritos</button></a>
+            </nav>
+
+
         </div>
 
         <button *ngIf="user" class="btn btn-primary" (click)="signOut()">
@@ -86,7 +93,7 @@
 
         <mat-sidenav-content>
 
-            <app-articulos [articulos]="articulos" [articulosAmazon]="articulosAmazon" [articulosEbay]="articulosEbay"></app-articulos>
+            <app-articulos [articulos]="articulos" [articulosAmazon]="articulosAmazon" [articulosEbay]="articulosEbay" [userEmail]="user.email"></app-articulos>
 
 
         </mat-sidenav-content>

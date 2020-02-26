@@ -1,0 +1,69 @@
+<mat-toolbar class="example-toolbar">
+
+    <h1 class="example-app-name">Scrappers App</h1>
+    <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
+        <div style="max-width: fit-content;">
+
+        </div>
+
+    </div>
+
+</mat-toolbar>
+
+
+<div class="container">
+    <h1 class="lista-title"> Tu Lista de Favoritos</h1>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 columna" *ngFor="let articulo of favoritos; index as i;">
+
+            <mat-card class="example-card">
+
+                <mat-card-header>
+                    <button (click)="deleteFavorito(articulo.$key)" class="btn btn-danger botonBorrar"><i class="fa fa-trash"></i></button>
+                    <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/MercadolibreIcono.jpeg'); background-size: cover;">
+                    </div>
+                    <mat-card-title> {{articulo.titulo}} </mat-card-title>
+                    <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>
+                </mat-card-header>
+                <div class="contenedorImagen" style="padding-top: 3vh;">
+                    <a [href]=articulo.url target="_blank">
+
+
+                        <img mat-card-image class="img_articulo" [src]="articulo.imagen" alt="Imagen de articulo">
+                    </a>
+                </div>
+
+
+                <mat-card-actions>
+                    <div class="clearfix" style="overflow: hidden; ">
+
+                        <h1 class="precio">
+                            ARS$ {{articulo.precio}}
+                        </h1>
+
+                        <nav align="end">
+                            <a [routerLink]="['/detalleArticulo']" [queryParams]="{titulo: articulo.titulo | json , 
+                                                                                   precio: articulo.precio | json, 
+                                                                                   imagen: articulo.imagen | json,
+                                                                                   stock: articulo.stock | json,
+                                                                                   comentario: articulo.respuesta | json,
+                                                                                   userEmail : idUser | json,
+                                                                                   ecommerce: articulo.ecommerce | json,
+                                                                                   fecha: articulo.fecha | json,
+                                                                                   respuesta: articulo.respuesta | json,
+                                                                                   url : articulo.url | json}"><button class="btn btn-success">Detalles</button></a>
+                        </nav>
+
+                    </div>
+
+                </mat-card-actions>
+            </mat-card>
+
+
+
+        </div>
+    </div>
+
+
+</div>
