@@ -45,6 +45,7 @@ import { FavoritosService } from './services/favoritos.service';
 //Modulos para inicio de sesion con redes sociales
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 
 let config = new AuthServiceConfig([
@@ -69,7 +70,8 @@ export function provideConfig() {
     NavbarComponent,
     SidenavComponent,
     DetalleArticuloComponent,
-    FavoritosComponent
+    FavoritosComponent,
+    CarouselComponent
    
   ],
   imports: [

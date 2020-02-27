@@ -1,7 +1,7 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="example-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 class=" example-app-name"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
+        <h1 class="example-app-name logoTexto"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
         <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
             <div style="max-width: fit-content;">
 
@@ -28,13 +28,13 @@
 
             <nav>
                 <a [routerLink]="['/favoritos']" [queryParams]="{idUser: user.email | json  
-                                                                       }"><button class="btn btn-primary botonFavorito">Favoritos</button></a>
+                                                                       }"><button class="btn btn-primary botonFavorito"><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button></a>
             </nav>
 
 
         </div>
 
-        <button *ngIf="user" class="btn btn-primary" (click)="signOut()">
+        <button *ngIf="user" class="btn btn-danger" (click)="signOut()">
             <i class="fa fa-sign-out"></i> Cerrar Sesión
         </button>
 
@@ -58,11 +58,15 @@
                         </mat-expansion-panel-header>
 
                         <mat-form-field>
-                            <input matInput placeholder="First name">
+                            <input style="visibility: hidden;" matInput>
+                            <button class="btn btn-success" (click)="orderPriceDownMercadoLibre()"><i class="fa fa-arrow-circle-down"></i> $</button>
+                            <button class="btn btn-success btnFiltro" (click)="orderPriceUpMercadoLibre()"><i class="fa fa-arrow-circle-up"></i> $</button>
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput placeholder="Age">
+                            <input style="visibility: hidden;" matInput>
+                            <button class="btn btn-warning" (click)="orderNameMercadoLibre()"><i class="fa fa-arrow-circle-down"></i> A-Z</button>
+                            <button class="btn btn-warning btnFiltro" (click)="orderNameUpMercadoLibre()"><i class="fa fa-arrow-circle-up"></i> A-Z</button>
                         </mat-form-field>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -71,10 +75,20 @@
                                 <img class="rounded" src="../../../assets/iconos/amazonIcono.png">
                             </mat-panel-title>
                             <mat-panel-description>
-                                <p class="filterText" style="font-weight: bold; color:goldenrod">Amazon USA</p>
+                                <p class="filterText" style="font-weight: bold; color:orangered">Amazon USA</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <p>I'm visible because I am open</p>
+                        <mat-form-field>
+                            <input style="visibility: hidden;" matInput>
+                            <button class="btn btn-success" (click)="orderPriceDownAmazon()"><i class="fa fa-arrow-circle-down"></i> $</button>
+                            <button class="btn btn-success btnFiltro" (click)="orderPriceUpAmazon()"><i class="fa fa-arrow-circle-up"></i> $</button>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input style="visibility: hidden;" matInput>
+                            <button class="btn btn-warning" (click)="orderNameAmazon()"><i class="fa fa-arrow-circle-down"></i> A-Z</button>
+                            <button class="btn btn-warning btnFiltro" (click)="orderNameUpAmazon()"><i class="fa fa-arrow-circle-up"></i> A-Z</button>
+                        </mat-form-field>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
@@ -88,7 +102,17 @@
                                 <p class="filterText" style="font-weight: bold; color:#4BDA1D">y</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <p>I'm visible because I am open</p>
+                        <mat-form-field>
+                            <input style="visibility: hidden;" matInput>
+                            <button class="btn btn-success" (click)="orderPriceDownEbay()"><i class="fa fa-arrow-circle-down"></i> $</button>
+                            <button class="btn btn-success btnFiltro" (click)="orderPriceUpEbay()"><i class="fa fa-arrow-circle-up"></i> $</button>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input style="visibility: hidden;" matInput>
+                            <button class="btn btn-warning" (click)="orderNameEbay()"><i class="fa fa-arrow-circle-down"></i> A-Z</button>
+                            <button class="btn btn-warning btnFiltro" (click)="orderNameUpEbay()"><i class="fa fa-arrow-circle-up"></i> A-Z</button>
+                        </mat-form-field>
                     </mat-expansion-panel>
                 </mat-accordion>
             </mat-nav-list>
@@ -96,7 +120,13 @@
 
         <mat-sidenav-content>
 
+            <app-carousel *ngIf="!listaArticulos"></app-carousel>
+
+
             <app-articulos [articulos]="articulos" [articulosAmazon]="articulosAmazon" [articulosEbay]="articulosEbay" [userEmail]="user.email"></app-articulos>
+
+
+
 
 
         </mat-sidenav-content>

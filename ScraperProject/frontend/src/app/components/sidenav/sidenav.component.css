@@ -62,17 +62,32 @@ h1.example-app-name {
 }
 
 .rounded {
-    width: 5vw;
+    width: 3.7vw;
     height: 7vh;
 }
 
 .filterText {
     margin-top: auto;
+    font-size: x-large;
+}
+
+.btnFiltro {
+    margin-left: 3vw;
 }
 
 .logoPagina {
     height: -webkit-fill-available;
     width: auto;
+}
+
+@font-face {
+    font-family: niphlerFont;
+    src: url('../../../assets/fonts/StoryBook-KpgA.ttf');
+}
+
+.logoTexto {
+    font-family: niphlerFont;
+    font-size: -webkit-xxx-large;
 }
 
 @media screen and (max-width: 767px) {

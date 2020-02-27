@@ -92,6 +92,80 @@ export class ArticulosComponent implements OnInit {
     
   }
 
-  
+  orderByPrice(lista : Object[]){
+    if(lista!=null){
+    lista.sort(function(a, b){return a["precio"]-b["precio"]});
+    }
+  }
+
+  orderByPriceMercadoLibre(){
+    this.orderByPrice(this.articulos);
+  }
+
+  orderByPriceAmazon(){
+    this.orderByPrice(this.articulosAmazon);
+  }
+
+  orderByPriceEbay(){
+    this.orderByPrice(this.articulosEbay);
+  }
+
+  orderByPriceUp(lista : Object[]){
+    if(lista!=null){
+    lista.sort(function(a, b){return b["precio"]-a["precio"]});
+    }
+  }
+
+  orderByPriceUpMercadoLibre(){
+    this.orderByPriceUp(this.articulos);
+  }
+
+  orderByPriceUpAmazon(){
+    this.orderByPriceUp(this.articulosAmazon);
+  }
+
+  orderByPriceUpEbay(){
+    this.orderByPriceUp(this.articulosEbay);
+  }
+
+  orderByName(lista : Object[]){
+    if(lista!=null){
+    lista.sort(function(a, b){if(a["titulo"] < b["titulo"]) { return -1; }
+    if(a["titulo"] > b["titulo"]) { return 1; }
+    return 0;});
+    }
+  }
+
+  orderByNameUp(lista : Object[]){
+    if(lista!=null){
+    lista.sort(function(a, b){if(a["titulo"] > b["titulo"]) { return -1; }
+    if(a["titulo"] < b["titulo"]) { return 1; }
+    return 0;});
+    }
+  }
+
+  orderByNameMercadoLibre(){
+    this.orderByName(this.articulos);
+  }
+
+  orderByNameAmazon(){
+    this.orderByName(this.articulosAmazon);
+  }
+
+  orderByNameEbay(){
+    this.orderByName(this.articulosEbay);
+  }
+
+  orderByNameUpMercadoLibre(){
+    this.orderByNameUp(this.articulos);
+  }
+
+  orderByNameUpAmazon(){
+    this.orderByNameUp(this.articulosAmazon);
+  }
+
+  orderByNameUpEbay(){
+    this.orderByNameUp(this.articulosEbay);
+  }
 
 }

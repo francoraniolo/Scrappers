@@ -56,6 +56,21 @@
     height: fit-content;
 }
 
+.logoPagina {
+    height: -webkit-fill-available;
+    width: auto;
+}
+
+@font-face {
+    font-family: niphlerFont;
+    src: url('../../../assets/fonts/StoryBook-KpgA.ttf');
+}
+
+.logoTexto {
+    font-family: niphlerFont;
+    font-size: -webkit-xxx-large;
+}
+
 @media screen and (max-width: 767px) {
     .mat-card {
         margin-top: 2vh;

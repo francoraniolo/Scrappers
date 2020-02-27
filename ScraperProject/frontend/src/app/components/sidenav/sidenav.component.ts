@@ -1,12 +1,15 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { ArticulosService } from "../../services/articulos.service";
+
+import {ArticulosComponent} from "../articulos/articulos.component";
 
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+
 
 
 
@@ -18,6 +21,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
   providers: [ArticulosService]
 })
 export class SidenavComponent implements OnDestroy, OnInit {
+  @ViewChild(ArticulosComponent ) child: ArticulosComponent ;
 
   articulos: Object;
   articulosAmazon: Object;
@@ -74,6 +78,56 @@ export class SidenavComponent implements OnDestroy, OnInit {
 
    }
 
+   orderPriceDownMercadoLibre(){
+     this.child.orderByPriceMercadoLibre();
+   }
+
+   orderPriceUpMercadoLibre(){
+    this.child.orderByPriceUpMercadoLibre();
+  }
+
+  orderPriceDownAmazon(){
+    this.child.orderByPriceAmazon();
+  }
+
+  orderPriceUpAmazon(){
+   this.child.orderByPriceUpAmazon();
+ }
+
+ orderPriceDownEbay(){
+  this.child.orderByPriceEbay();
+}
+
+orderPriceUpEbay(){
+ this.child.orderByPriceUpEbay();
+}
  
+orderNameMercadoLibre(){
+  this.child.orderByNameMercadoLibre();
+}
+
+orderNameAmazon(){
+  this.child.orderByNameAmazon();
+}
+
+orderNameEbay(){
+  this.child.orderByNameEbay();
+}
+
+orderNameUpMercadoLibre(){
+  this.child.orderByNameUpMercadoLibre();
+}
+
+orderNameUpAmazon(){
+  this.child.orderByNameUpAmazon();
+}
+
+orderNameUpEbay(){
+  this.child.orderByNameUpEbay();
+}
+
+
+
+
 }
 
