@@ -1,7 +1,7 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="example-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 class="example-app-name logoTexto"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
+        <h1 [routerLink]="['/']" routerLinkActive="router-link-active" class="example-app-name logoTexto"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
         <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
             <div style="max-width: fit-content;">
 

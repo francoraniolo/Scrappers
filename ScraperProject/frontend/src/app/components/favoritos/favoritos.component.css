@@ -59,6 +59,7 @@
 .logoPagina {
     height: -webkit-fill-available;
     width: auto;
+    cursor: pointer;
 }
 
 @font-face {

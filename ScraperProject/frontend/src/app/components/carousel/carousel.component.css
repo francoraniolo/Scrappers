@@ -1,3 +1,20 @@
 .carousel-img {
     height: 90vh;
 }
+
+.carousel-caption {
+    background: rgba(204, 204, 204);
+    background: rgba(204, 204, 204, 0.5);
+}
+
+h1 {
+    font-weight: bolder;
+    color: #3057DE;
+    opacity: 1;
+}
+
+h2 {
+    font-weight: bolder;
+    color: #3057DE;
+    opacity: 1;
+}
