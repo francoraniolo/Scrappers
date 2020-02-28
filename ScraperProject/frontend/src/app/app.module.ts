@@ -48,6 +48,8 @@ import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-logi
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+//Toastr
+import {ToastrModule} from 'ngx-toastr';
 
 let config = new AuthServiceConfig([
   {
@@ -104,7 +106,8 @@ export function provideConfig() {
     FontAwesomeModule,
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ToastrModule.forRoot()
     
     
   ],

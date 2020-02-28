@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { FavoritosService} from '../../services/favoritos.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.component.html',
@@ -13,7 +15,7 @@ export class FavoritosComponent implements OnInit {
   favoritos: Object[];
   idUser: string; 
 
-  constructor(private router: ActivatedRoute,private favoritosService: FavoritosService) { }
+  constructor(private toastr : ToastrService ,private router: ActivatedRoute,private favoritosService: FavoritosService) { }
 
   ngOnInit(): void {
     this.router.queryParams.subscribe(params =>{
@@ -31,8 +33,10 @@ export class FavoritosComponent implements OnInit {
   }
 
   deleteFavorito($key:string){
-    
+    if(confirm('¿Estás seguro de que quieres eliminar este artículo?')){
     this.favoritosService.deleteFavorito($key);
+    this.toastr.success('Operación con éxito', 'El artículo ha sido removido de tus favoritos');
+    }
   }
 
 }
