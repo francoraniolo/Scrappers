@@ -32,7 +32,11 @@ export class DetalleArticuloComponent implements OnInit {
       this.precio = JSON.parse(params['precio']);
       this.ecommerce = JSON.parse(params['ecommerce']);
       this.stock = JSON.parse(params['stock']);
+      if(params['imagen']!=null){
       this.imagen = JSON.parse(params['imagen']);
+      }else{
+        this.imagen= "../../assets/no-image-found.png";
+      }
       this.url = JSON.parse(params['url']);
       if(params['fecha']!=null){
         this.fecha = JSON.parse(params['fecha']);
