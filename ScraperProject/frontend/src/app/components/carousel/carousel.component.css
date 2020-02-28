@@ -9,12 +9,35 @@
 
 h1 {
     font-weight: bolder;
-    color: #3057DE;
+    color: #F76506;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     opacity: 1;
 }
 
 h2 {
     font-weight: bolder;
-    color: #3057DE;
+    color: #F76506;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     opacity: 1;
+}
+
+@font-face {
+    font-family: carouselFont;
+    src: url('../../../assets/fonts/GoodUnicornRegular-Rxev.ttf');
+}
+
+.carouselFuente {
+    font-family: carouselFont;
+    font-size: -webkit-xxx-large;
+}
+
+@media screen and (max-width: 767px) {
+    .carousel-img {
+        height: 30vh;
+    }
+    .carousel-caption {
+        width: fit-content;
+        height: auto;
+        position: relative;
+    }
 }

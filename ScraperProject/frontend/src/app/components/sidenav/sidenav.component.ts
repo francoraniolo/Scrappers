@@ -27,6 +27,8 @@ export class SidenavComponent implements OnDestroy, OnInit {
   articulosAmazon: Object;
   articulosEbay : Object;
   listaArticulos : Object;
+
+  loading: boolean = false;
   
   user: SocialUser= null;
   loggedIn: boolean;
@@ -70,11 +72,15 @@ export class SidenavComponent implements OnDestroy, OnInit {
   }
 
   async getArticulos(form: NgForm){
+
+    this.loading=true;
     
     this.listaArticulos = await this.articulosservice.getArticulos(form.name.toString());
     this.articulos = this.listaArticulos[0];
     this.articulosAmazon = this.listaArticulos[1];
     this.articulosEbay = this.listaArticulos[2];
+
+    this.loading=false;
 
    }
 

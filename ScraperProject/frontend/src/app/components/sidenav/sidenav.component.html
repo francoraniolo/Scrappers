@@ -15,7 +15,7 @@
 
         </div>
 
-        <button *ngIf="!user" class="btn btn-danger" (click)="signInWithGoogle()">
+        <button *ngIf="!user" class="btn btn-danger botonEscritorio" (click)="signInWithGoogle()">
             <i class="fa fa-google"></i>
             Iniciar Sesión
         </button>
@@ -28,13 +28,13 @@
 
             <nav>
                 <a [routerLink]="['/favoritos']" [queryParams]="{idUser: user.email | json  
-                                                                       }"><button class="btn btn-primary botonFavorito"><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button></a>
+                                                                       }"><button class="btn btn-primary botonFavorito botonEscritorio"><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button></a>
             </nav>
 
 
         </div>
 
-        <button *ngIf="user" class="btn btn-danger" (click)="signOut()">
+        <button *ngIf="user" class="btn btn-danger botonEscritorio" (click)="signOut()">
             <i class="fa fa-sign-out"></i> Cerrar Sesión
         </button>
 
@@ -120,15 +120,24 @@
 
         <mat-sidenav-content>
 
-            <app-carousel *ngIf="!listaArticulos"></app-carousel>
+            <app-carousel *ngIf="!listaArticulos && !loading"></app-carousel>
+
+            <div *ngIf="loading" class="cssload-container">
+
+                <div style="margin-top: 5vh;" class="cssload-whirlpool"></div>
+            </div>
 
 
-            <app-articulos [articulos]="articulos" [articulosAmazon]="articulosAmazon" [articulosEbay]="articulosEbay" [userEmail]="user.email"></app-articulos>
+
+
+            <app-articulos [ngClass]="{'esconder': loading}" [articulos]="articulos" [articulosAmazon]="articulosAmazon" [articulosEbay]="articulosEbay" [userEmail]="user.email"></app-articulos>
 
 
 
-
+            <app-footer></app-footer>
 
         </mat-sidenav-content>
+
     </mat-sidenav-container>
+
 </div>
