@@ -20,7 +20,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
   styleUrls: ['sidenav.component.css'],
   providers: [ArticulosService]
 })
-export class SidenavComponent implements OnDestroy, OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
   @ViewChild(ArticulosComponent ) child: ArticulosComponent ;
 
   articulos: Object;
@@ -50,24 +50,25 @@ export class SidenavComponent implements OnDestroy, OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
  
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  } 
+  // signInWithFB(): void {
+  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // } 
  
   signOut(): void {
     this.authService.signOut();
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
+
+   ngOnDestroy(): void {
+     this.mobileQuery.removeListener(this._mobileQueryListener);
+   }
 
   ngOnInit(): void {
 
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-    });
+     });
     
   }
 

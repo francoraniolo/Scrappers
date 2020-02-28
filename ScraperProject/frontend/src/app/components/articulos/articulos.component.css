@@ -95,7 +95,7 @@
             height: 7vh;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: auto;
+            width: 35vw;
         }
         .contenedorImagen {
             height: 25vh;
@@ -108,5 +108,13 @@
         }
         .mat-card-actions {
             margin-top: 5%;
+        }
+        .btn-success {
+            margin-right: 4vw;
+            position: relative;
+            bottom: 3vh;
+        }
+        .precio {
+            font-size: 2.6vh;
         }
     }

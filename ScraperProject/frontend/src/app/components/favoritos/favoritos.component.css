@@ -81,9 +81,10 @@
         width: auto;
     }
     .mat-card-header .mat-card-title {
-        height: 4vh;
+        height: 7vh;
         overflow: hidden;
         text-overflow: ellipsis;
+        width: 35vw;
     }
     .contenedorImagen {
         height: 25vh;
@@ -96,5 +97,18 @@
     }
     .mat-card-actions {
         margin-top: 5%;
+    }
+    .btn-success {
+        margin-right: 4vw;
+        position: relative;
+        bottom: 3vh;
+    }
+    .precio {
+        font-size: 2.6vh;
+    }
+    .botonBorrar {
+        position: relative;
+        right: 16vw;
+        bottom: 2vh;
     }
 }

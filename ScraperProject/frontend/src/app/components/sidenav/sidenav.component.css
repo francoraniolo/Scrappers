@@ -78,9 +78,13 @@ h1.example-app-name {
 }
 
 .logoPagina {
-    height: -webkit-fill-available;
+    height: 6vh;
     width: auto;
     cursor: pointer;
+}
+
+.loading-spinner {
+    margin-bottom: 10vh;
 }
 
 @font-face {
