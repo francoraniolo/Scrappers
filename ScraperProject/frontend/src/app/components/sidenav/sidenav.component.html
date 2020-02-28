@@ -1,7 +1,9 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="example-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 [routerLink]="['/']" routerLinkActive="router-link-active" class="example-app-name logoTexto"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
+        <div class="logoContenedor">
+            <h1 [routerLink]="['/']" routerLinkActive="router-link-active" class="example-app-name logoTexto"> <img class="logoPagina" src="../../../assets/Niphler.png"> Niphler </h1>
+        </div>
         <div class="clearfix" style="max-width: max-content; margin-left: 3%;">
             <div style="max-width: fit-content;">
 
@@ -20,18 +22,18 @@
             Iniciar Sesión
         </button>
 
-        <img *ngIf="user" src="{{ user.photoUrl }}" alt="Avatar" class="avatar">
+        <img *ngIf="user" src="{{ user.photoUrl }}" alt="Avatar" class="avatar botonEscritorio">
         <div *ngIf="user">
-            <!-- <h4>{{ user.name }}</h4> -->
-            <!-- <p>{{ user.email }}</p> -->
-
-
             <nav>
                 <a [routerLink]="['/favoritos']" [queryParams]="{idUser: user.email | json  
                                                                        }"><button class="btn btn-primary botonFavorito botonEscritorio"><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button></a>
             </nav>
+        </div>
 
-
+        <div *ngIf="!user">
+            <nav>
+                <button class="btn btn-primary botonFavorito botonEscritorio" disabled><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button>
+            </nav>
         </div>
 
         <button *ngIf="user" class="btn btn-danger botonEscritorio" (click)="signOut()">
@@ -75,7 +77,7 @@
                                 <img class="rounded" src="../../../assets/iconos/amazonIcono.png">
                             </mat-panel-title>
                             <mat-panel-description>
-                                <p class="filterText" style="font-weight: bold; color:orangered">Amazon USA</p>
+                                <p class="filterText amazonFont" style="font-weight: bold; color:#F6900E">amazon</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <mat-form-field>
@@ -100,6 +102,7 @@
                                 <p class="filterText" style="font-weight: bold; color:blue">b</p>
                                 <p class="filterText" style="font-weight: bold; color:goldenrod">a</p>
                                 <p class="filterText" style="font-weight: bold; color:#4BDA1D">y</p>
+
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <mat-form-field>
@@ -114,8 +117,47 @@
                             <button class="btn btn-warning btnFiltro" (click)="orderNameUpEbay()"><i class="fa fa-arrow-circle-up"></i> A-Z</button>
                         </mat-form-field>
                     </mat-expansion-panel>
+
+
                 </mat-accordion>
+
+                <div class="botonesMobile">
+                    <button *ngIf="!user" class="btn btn-danger " (click)="signInWithGoogle()">
+                        <i class="fa fa-google"></i>
+                        Iniciar Sesión
+                    </button>
+
+                    <img *ngIf="user" src="{{ user.photoUrl }}" alt="Avatar" class="avatar">
+
+                    <br>
+                    <br>
+
+                    <div *ngIf="user">
+                        <nav>
+                            <a [routerLink]="['/favoritos']" [queryParams]="{idUser: user.email | json  
+                                                                                   }"><button class="btn btn-primary botonFavorito "><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button></a>
+                        </nav>
+                    </div>
+                    <br>
+                    <br>
+                    <div *ngIf="!user">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                        <nav>
+                            <button class="btn btn-primary botonFavorito " disabled><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button>
+                        </nav>
+                    </div>
+
+                    <button *ngIf="user" class="btn btn-danger " (click)="signOut()">
+                        <i class="fa fa-sign-out"></i> Cerrar Sesión
+                    </button>
+                </div>
             </mat-nav-list>
+
+
         </mat-sidenav>
 
         <mat-sidenav-content>

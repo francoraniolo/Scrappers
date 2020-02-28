@@ -69,6 +69,8 @@ h1.example-app-name {
 .filterText {
     margin-top: auto;
     font-size: x-large;
+    text-shadow: -1px 0 black, 0 3px black, 2px 0 black, 0 -1px black;
+    ;
 }
 
 .btnFiltro {
@@ -91,12 +93,36 @@ h1.example-app-name {
     font-size: -webkit-xxx-large;
 }
 
+@font-face {
+    font-family: amazonFontText;
+    src: url('../../../assets/fonts/amazonFont.otf');
+}
+
+.amazonFont {
+    font-family: amazonFontText;
+}
+
+.botonesMobile {
+    visibility: hidden;
+}
+
 @media screen and (max-width: 767px) {
     .mat-sidenav {
         width: 95%;
     }
     .logoTexto {
         font-size: x-small;
+    }
+    .botonesMobile {
+        visibility: visible;
+        margin-top: 5vh;
+        margin-left: 5vh;
+    }
+    .botonEscritorio {
+        visibility: hidden;
+    }
+    .rounded {
+        width: 9.7vw;
     }
 }
 
