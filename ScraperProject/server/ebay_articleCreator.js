@@ -26,6 +26,7 @@ async function createArticle(url) {
                 titulo = titulo.split('Detalles acerca de  ').join('');
                 titulo = titulo.replace(/\s+/, "");
 
+                titulo = titulo.split('-mostrar título original').join('');
 
                 //Busco los precios
 

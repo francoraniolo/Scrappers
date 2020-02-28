@@ -23,7 +23,11 @@
 
                 <mat-card-header>
                     <button (click)="deleteFavorito(articulo.$key)" class="btn btn-danger botonBorrar"><i class="fa fa-trash"></i></button>
-                    <div mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/MercadolibreIcono.jpeg'); background-size: cover;">
+                    <div *ngIf="articulo.ecommerce == 'Mercadolibre'" mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/MercadolibreIcono.jpeg'); background-size: cover;">
+                    </div>
+                    <div *ngIf="articulo.ecommerce == 'Ebay'" mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/ebayIcono.png'); background-size: cover;">
+                    </div>
+                    <div *ngIf="articulo.ecommerce == 'Amazon USA'" mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/iconos/amazonIcono.png'); background-size: cover;">
                     </div>
                     <mat-card-title> {{articulo.titulo}} </mat-card-title>
                     <mat-card-subtitle> {{articulo.ecommerce}}</mat-card-subtitle>

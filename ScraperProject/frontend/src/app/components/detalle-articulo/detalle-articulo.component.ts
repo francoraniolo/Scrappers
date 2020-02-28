@@ -42,7 +42,7 @@ export class DetalleArticuloComponent implements OnInit {
       }
       
       this.idUser = JSON.parse(params['userEmail']);
-      
+      console.log("USEREMAIL ES ",this.idUser);
       
       this.articulo = { 'idUser': this.idUser,
                         'titulo': this.titulo,
