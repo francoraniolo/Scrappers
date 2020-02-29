@@ -29,6 +29,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
   listaArticulos : Object;
 
   loading: boolean = false;
+
+  hayInfoGuardada: boolean=false; 
   
   user: SocialUser= null;
   loggedIn: boolean;
@@ -47,15 +49,28 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
 
   signInWithGoogle(): void {
+    window.localStorage.removeItem("articulos");
+    window.localStorage.removeItem("articulosAmazon");
+    window.localStorage.removeItem("articulosEbay");
+
+    window.localStorage.removeItem("precioPromedio");
+
+    this.child.limpiarStorage();
+
+    this.listaArticulos=null;
+
+    this.hayInfoGuardada=false;
+
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
  
-  // signInWithFB(): void {
-  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  // } 
- 
   signOut(): void {
+  
+    this.child.limpiarStorage();
     this.authService.signOut();
+    this.listaArticulos=null;
+
+    this.hayInfoGuardada=false;
   }
 
 
@@ -69,7 +84,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
       this.user = user;
       this.loggedIn = (user != null);
      });
-    
+
+     this.hayInfoGuardada= localStorage.getItem("articulos")!=null;
+
   }
 
   async getArticulos(form: NgForm){

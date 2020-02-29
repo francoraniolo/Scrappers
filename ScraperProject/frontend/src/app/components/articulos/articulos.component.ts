@@ -34,12 +34,23 @@ export class ArticulosComponent implements OnInit {
   ngOnInit(): void {
     this.pedirDolar();
 
+    if(localStorage.getItem("articulos")!=null){
+      this.articulos=JSON.parse(localStorage.getItem("articulos"));
+      this.articulosAmazon=JSON.parse(localStorage.getItem("articulosAmazon"));
+      this.articulosEbay=JSON.parse(localStorage.getItem("articulosEbay"));
+
+      this.precioPromedio=parseFloat(localStorage.getItem("precioPromedio"));
+    } 
+    
     
   }
 
   ngOnChanges(changes: SimpleChanges): void {
   
+  this.pedirDolar();
 
+  if(localStorage.getItem("articulos")==null){
+    
     if((this.articulos!=null)&&(this.articulosAmazon!=null)&&(this.articulosEbay!=null)){
 
     this.suma=0;
@@ -51,7 +62,6 @@ export class ArticulosComponent implements OnInit {
      
     })
     
-   
 
 
     this.articulosAmazon.forEach(articulo =>{
@@ -82,7 +92,21 @@ export class ArticulosComponent implements OnInit {
    this.suma=0;
    this.cantidadARestar=0;
 
-  }
+
+  localStorage.setItem("articulos", JSON.stringify(this.articulos));
+  localStorage.setItem("articulosAmazon", JSON.stringify(this.articulosAmazon));
+  localStorage.setItem("articulosEbay", JSON.stringify(this.articulosEbay));
+
+  localStorage.setItem("precioPromedio", this.precioPromedio.toString());
+  this.precioPromedio=parseFloat(localStorage.getItem("precioPromedio"));
+
+  this.articulos=JSON.parse(localStorage.getItem("articulos"));
+  this.articulosAmazon=JSON.parse(localStorage.getItem("articulosAmazon"));
+  this.articulosEbay=JSON.parse(localStorage.getItem("articulosEbay"));
+
+
+            }
+      }
   }
 
   async pedirDolar(){
@@ -166,6 +190,14 @@ export class ArticulosComponent implements OnInit {
 
   orderByNameUpEbay(){
     this.orderByNameUp(this.articulosEbay);
+  }
+
+  limpiarStorage(){
+    window.localStorage.removeItem("articulos");
+    window.localStorage.removeItem("articulosAmazon");
+    window.localStorage.removeItem("articulosEbay");
+
+    window.localStorage.removeItem("precioPromedio");
   }
 
 }
