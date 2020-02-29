@@ -29,18 +29,6 @@
             <i class="fa fa-sign-out"></i> Cerrar Sesión
         </button>
 
-
-        <!-- <img *ngIf="!user" src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/256/avatar-default-icon.png" alt="Avatar" class="avatar botonEscritorio">
-
-
-        <div *ngIf="!user">
-            <nav>
-                <a>
-                    <button class="btn btn-primary botonFavorito botonEscritorio" disabled><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button>
-                </a>
-            </nav>
-        </div> -->
-
         <button *ngIf="!user" class="btn btn-danger botonEscritorio" (click)="signInWithGoogle()">
             <i class="fa fa-google"></i>
             Iniciar Sesión
@@ -146,16 +134,7 @@
                     </div>
                     <br>
                     <br>
-                    <!-- <div *ngIf="!user">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
 
-                        <nav>
-                            <button class="btn btn-primary botonFavorito " disabled><i class="fa fa-star" style="color:goldenrod" aria-hidden="true"></i> Favoritos</button>
-                        </nav>
-                    </div> -->
 
                     <button *ngIf="user" class="btn btn-danger " (click)="signOut()">
                         <i class="fa fa-sign-out"></i> Cerrar Sesión
@@ -168,11 +147,13 @@
 
         <mat-sidenav-content>
 
-            <app-carousel *ngIf="!listaArticulos && !loading"></app-carousel>
+            <app-carousel *ngIf="!listaArticulos && !loading && !hayArticulos"></app-carousel>
 
             <div *ngIf="loading" class="loading-spinner cssload-container">
 
-                <div style="margin-top: 5vh;" class="cssload-whirlpool"></div>
+                <div style="margin-top: 5vh;" class="cssload-whirlpool">
+                </div>
+
             </div>
 
 

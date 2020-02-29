@@ -33,10 +33,10 @@ export class FavoritosComponent implements OnInit {
   }
 
   deleteFavorito($key:string){
-    if(confirm('¿Estás seguro de que quieres eliminar este artículo?')){
+    
     this.favoritosService.deleteFavorito($key);
     this.toastr.success('Operación con éxito', 'El artículo ha sido removido de tus favoritos');
-    }
+    
   }
 
 }

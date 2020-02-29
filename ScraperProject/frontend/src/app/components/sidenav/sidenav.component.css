@@ -84,7 +84,8 @@ h1.example-app-name {
 }
 
 .loading-spinner {
-    margin-bottom: 10vh;
+    margin-bottom: 40vh;
+    margin-top: 10vh;
 }
 
 @font-face {

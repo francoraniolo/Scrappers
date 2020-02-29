@@ -111,10 +111,38 @@ async function createArticle(url) {
                     precio = precio.split('$').join('');
                 }
 
-                precio = precio.split(',').join('');
-
                 if (precio.localeCompare('') == 0) {
-                    precio = null;
+
+                    var precio = $('#buyNew_noncbb').text();
+                    precio = precio.split('US$&nbsp;').join('');
+                    precio = precio.split('\t').join('');
+                    precio = precio.split('\n').join('');
+                    precio = precio.split(' ').join('');
+                    precio = precio.split('$').join('');
+                }
+
+                if (precio.localeCompare('\t\t\t\t') == 0) {
+                    var aux = $('#usedPitchPrice');
+                    var precio = aux.find('span.price-large').text();
+                    precio = precio.concat('.');
+                    var aux2 = aux.find('span.a-size-small');
+                    precio = precio.concat($(aux2[1]).text());
+                    precio = precio.split('\n').join('');
+                    precio = precio.split('$').join('');
+                    precio = precio.replace(/\s/g, '');
+
+
+
+
+
+                }
+                if (precio != null) {
+                    precio = precio.split(',').join('');
+
+
+                    if ((precio.localeCompare('') == 0) || (precio.localeCompare('.') == 0)) {
+                        precio = null;
+                    }
                 }
 
                 var disponibilidad = $('#availability').text();

@@ -41,9 +41,9 @@ function getDolar(url) {
 }
 
 
-// getDolar(url).then(function(res) {
-//     console.log("Res es ", res);
-// });
+//getDolar(url).then(function(res) {
+//    console.log("Res es ", res);
+//});
 
 
 module.exports = {
