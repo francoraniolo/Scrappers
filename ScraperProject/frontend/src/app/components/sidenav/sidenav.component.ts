@@ -35,7 +35,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
   user: SocialUser= null;
   loggedIn: boolean;
   
-  readonly URL_API = 'http://localhost:3000/api/articulos';
+  //readonly URL_API = 'http://localhost:3000/api/articulos';
+  readonly URL_API = 'https://niphlerscrappers.herokuapp.com/api/articulos';
 
     panelOpenState = false;
   mobileQuery: MediaQueryList;

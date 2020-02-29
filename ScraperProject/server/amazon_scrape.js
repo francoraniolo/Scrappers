@@ -1,6 +1,8 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
+
+
 // INICIO FUNCION 
 function findArticulos(input, callback) {
 
@@ -18,7 +20,11 @@ function findArticulos(input, callback) {
 
     request({ url: url, gzip: true }, (error,
         response, html) => {
+
+        console.log("RESPONSE ES ", response);
         if (!error && response.statusCode == 200) {
+
+
 
             const $ = cheerio.load(html);
 
@@ -29,6 +35,7 @@ function findArticulos(input, callback) {
             var existe;
 
             var $articulos = new Array();
+
 
             var $el, $titulo, $titulo_minus;
 
@@ -52,6 +59,13 @@ function findArticulos(input, callback) {
                 //    }
 
             }
+
+            //TEST BORRAR!!
+
+            //CON ESTO DEVUELVE TODO UNDEFINED PERO EL CODIGO AL MENOS SIGUE!! MERCADOLIBRE Y EBAY RETORNAN!
+
+
+
             callback(null, $articulos);
         } else {
             callback(error);

@@ -29,6 +29,8 @@ async function obtenerArticulos($term) {
                     }
                     Promise.all($promesas).then(values => {
                         resolve(values);
+                    }).catch(function(e) {
+                        console.log(e);
                     });
 
                 })();

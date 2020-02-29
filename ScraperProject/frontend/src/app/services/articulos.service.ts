@@ -10,7 +10,8 @@ export class ArticulosService {
   termino: string; 
   articulos: Object;
   dolar : Object;
-  readonly URL_API = 'http://localhost:3000/api/articulos';
+  //readonly URL_API = 'http://localhost:3000/api/articulos';
+  readonly URL_API = 'https://niphlerscrappers.herokuapp.com/api/articulos';
   
 
   constructor(private http: HttpClient) { }

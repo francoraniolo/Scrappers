@@ -12,10 +12,11 @@ async function obtenerArticulos($term) {
         scrape.findArticulos($term, function(err, articls) {
             if (err) {
                 console.log(err);
-                reject(err);
+                //reject(err);
                 return;
             } else {
 
+                console.log("articls es", articls);
                 (async() => {
 
                     $articulos_atributos = new Array();
@@ -30,6 +31,8 @@ async function obtenerArticulos($term) {
 
                     Promise.all($promesas).then(values => {
                         resolve(values);
+                    }).catch(function(e) {
+                        console.log(e);
                     });
 
                 })();
