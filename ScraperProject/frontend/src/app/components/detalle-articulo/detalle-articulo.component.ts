@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { FavoritosService } from '../../services/favoritos.service';  
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-detalle-articulo',
   templateUrl: './detalle-articulo.component.html',
@@ -24,7 +26,7 @@ export class DetalleArticuloComponent implements OnInit {
 
   articulo: Object;
 
-  constructor(private favoritosService: FavoritosService, private router: ActivatedRoute) { }
+  constructor(private toastr: ToastrService ,private favoritosService: FavoritosService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {  
       this.router.queryParams.subscribe(params =>{
@@ -68,6 +70,8 @@ export class DetalleArticuloComponent implements OnInit {
     if(this.articulo!=null){
       this.favoritosService.getAllFavoritos();
       this.favoritosService.insertFavorito(this.articulo);
+
+      this.toastr.success('Operación con éxito', 'El artículo ha sido agregado a tus favoritos');
     }
     
   }

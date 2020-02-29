@@ -42,7 +42,7 @@ h1.example-app-name {
     width: max-content;
 }
 
-.fa-search {
+.btnBusqueda {
     margin-right: 3vw;
 }
 
@@ -59,6 +59,7 @@ h1.example-app-name {
 
 .botonFavorito {
     margin-right: 2vw;
+    font-weight: 500;
 }
 
 .rounded {
@@ -75,6 +76,11 @@ h1.example-app-name {
 
 .btnFiltro {
     margin-left: 3vw;
+}
+
+.btnInicioSesion {
+    background-color: darkred;
+    border-color: orangered;
 }
 
 .logoPagina {
@@ -96,6 +102,7 @@ h1.example-app-name {
 .logoTexto {
     font-family: niphlerFont;
     font-size: -webkit-xxx-large;
+    color: orange;
 }
 
 @font-face {

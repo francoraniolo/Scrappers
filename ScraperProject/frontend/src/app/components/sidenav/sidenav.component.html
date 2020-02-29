@@ -9,7 +9,7 @@
 
                 <form #articuloForm="ngForm" (ngSubmit)="getArticulos(articuloForm.value)" class="form-inline active-cyan-4 clearfix buscadorForm">
                     <input class="form-control form-control-md mr-3 w-120" type="text" name="name" placeholder="Busca productos..." aria-label="Search" ngModel>
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <button class="btn btn-warning btnBusqueda" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
 
 
@@ -29,7 +29,7 @@
             <i class="fa fa-sign-out"></i> Cerrar Sesión
         </button>
 
-        <button *ngIf="!user" class="btn btn-danger botonEscritorio" (click)="signInWithGoogle()">
+        <button *ngIf="!user" class="btn btn-danger botonEscritorio btnInicioSesion" (click)="signInWithGoogle()">
             <i class="fa fa-google"></i>
             Iniciar Sesión
         </button>
@@ -49,7 +49,7 @@
                             </mat-panel-title>
 
                             <mat-panel-description>
-                                <p class="filterText" style="font-weight: bold; color:#fff159">Mercadolibre</p>
+                                <p class="filterText" style="font-weight: bold; color:#DFD019">Mercadolibre</p>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
